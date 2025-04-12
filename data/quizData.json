@@ -1,0 +1,858 @@
+{
+    "html": [
+        { 
+            "question": "What does HTML stand for?", 
+            "choices": ["HyperText Markup Language", "HyperTransfer Markup Language", "HighText Machine Language", "Hyperlink and Text Markup Language"], 
+            "answer": 1 
+        },
+        { 
+            "question": "Which HTML tag is used to define an unordered list?", 
+            "choices": ["<ul>", "<ol>", "<li>", "<dl>"], 
+            "answer": 1 
+        },
+        { 
+            "question": "What is the purpose of the <title> tag in HTML?", 
+            "choices": ["To define the main heading", "To specify a webpage title", "To create a hyperlink", "To display an image"], 
+            "answer": 2 
+        },
+        { 
+            "question": "Which attribute is used to provide an alternative text for an image?", 
+            "choices": ["alt", "title", "href", "src"], 
+            "answer": 1 
+        },
+        { 
+            "question": "Which HTML tag is used for creating a hyperlink?", 
+            "choices": ["<link>", "<a>", "<href>", "<nav>"], 
+            "answer": 2 
+        },
+        { 
+            "question": "How do you create a line break in HTML?", 
+            "choices": ["<lb>", "<break>", "<'br'>", "<hr>"], 
+            "answer": 3 
+        },
+        { 
+            "question": "What is the correct HTML for inserting an image?", 
+            "choices": ["<img src='image.jpg'>", "<image>image.jpg</image>", "<img>image.jpg</img>", "<src img='image.jpg'>"], 
+            "answer": 1 
+        },
+        { 
+            "question": "<WordWrap>Which HTML element is used to specify a footer for a document?<WordWrap>", 
+            "choices": ["<foot>", "<footer>", "<bottom>", "<end>"], 
+            "answer": 2 
+        },
+        { 
+            "question": "Which HTML element is used for the largest heading?", 
+            "choices": ["<head>", "<h1>", "<h6>", "<title>"], 
+            "answer": 2 
+        },
+        { 
+            "question": "What is the correct HTML5 doctype declaration?", 
+            "choices": ["<!DOCTYPE html>", "<DOCTYPE HTML>", "<!DOCTYPE HTML5>", "<html doctype>"], 
+            "answer": 1 
+        },
+        { 
+            "question": "Which tag is used to create a new paragraph in HTML?", 
+            "choices": ["<'br'>", "<p>", "<h1>", "<div>"], 
+            "answer": 2 
+        },
+        { 
+            "question": "What is the purpose of the <th> tag in an HTML table?", 
+            "choices": ["To define a table row", "To define a table heading", "To create a table border", "To merge table cells"], 
+            "answer": 2 
+        },
+        { 
+            "question": "Which tag is used to make text italicized in HTML?", 
+            "choices": ["<b>", "<em>", "<u>", "<i>"], 
+            "answer": 4 
+        },
+        { 
+            "question": "How do you insert a comment in an HTML document?", 
+            "choices": ["// my comment", "/* my comment */", "<!-- my comment -->", "# my comment"], 
+            "answer": 3 
+        },
+        { 
+            "question": "Which HTML tag is used to embed an audio file?", 
+            "choices": ["<sound>", "<audio>", "<media>", "<music>"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>Which attribute is used within the <audio> tag to display audio controls?<WordWrap>", 
+            "choices": ["autoplay", "loop", "controls", "play"], 
+            "answer": 3 
+        },
+        { 
+            "question": "<WordWrap>Which tag is used to embed a video in an HTML document?<WordWrap>", 
+            "choices": ["<vid>", "<media>", "<mp4>", "<video>"], 
+            "answer": 4 
+        },
+        { 
+            "question": "<WordWrap>Which attribute is used within the <video> tag to set a video to play automatically?<WordWrap>", 
+            "choices": ["loop", "controls", "autoplay", "play"], 
+            "answer": 3 
+        },
+        { 
+            "question": "Which HTML tag is used to create a table?", 
+            "choices": ["<tbl>", "<table>", "<tr>", "<td>"], 
+            "answer": 2 
+        },
+        {
+            "question": "Which HTML tag is used to define a table row?",
+            "choices": ["<td>", "<table>", "<tr>", "<th>"],
+            "answer": 3
+        },
+        {
+            "question": "Which tag is used to define a table cell in HTML?",
+            "choices": ["<td>", "<tr>", "<th>", "<table>"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>Which attribute is used to merge two or more columns in a table?<WordWrap>",
+            "choices": ["rowspan", "colspan", "merge", "span"],
+            "answer": 2
+        },
+        {
+            "question": "Which HTML element is used to group block elements?",
+            "choices": ["<div>", "<span>", "<section>", "<group>"],
+            "answer": 1
+        },
+        {
+            "question": "Which HTML element is used for inline styling?",
+            "choices": ["<css>", "<style>", "<link>", "<span>"],
+            "answer": 4
+        },
+        {
+            "question": "Which tag is used to define metadata about an HTML document?",
+            "choices": ["<head>", "<meta>", "<title>", "<link>"],
+            "answer": 2
+        },
+        {
+            "question": "What does the <meta charset='UTF-8'> tag do?",
+            "choices": ["Defines a character encoding", "Links external CSS", "Adds JavaScript", "Creates a hyperlink"],
+            "answer": 1
+        },
+        {
+            "question": "Which tag is used to add JavaScript to an HTML page?",
+            "choices": ["<js>", "<script>", "<javascript>", "<code>"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>Which attribute in the <script> tag is used to reference an external JavaScript file?<WordWrap>",
+            "choices": ["href", "src", "link", "script"],
+            "answer": 2
+        },
+        {
+            "question": "Which HTML tag is used to define a navigation menu?",
+            "choices": ["<menu>", "<nav>", "<section>", "<aside>"],
+            "answer": 2
+        },
+        {
+            "question": "Which tag is used to define a form in HTML?",
+            "choices": ["<form>", "<input>", "<submit>", "<fieldset>"],
+            "answer": 1
+        },
+        {
+            "question": "Which attribute is used in <form> to specify the action URL?",
+            "choices": ["target", "method", "action", "href"],
+            "answer": 3
+        },
+        {
+            "question": "Which input type is used for passwords?",
+            "choices": ["text", "password", "secure", "hidden"],
+            "answer": 2
+        },
+        {
+            "question": "Which HTML element is used for a clickable button?",
+            "choices": ["<click>", "<btn>", "<input>", "<button>"],
+            "answer": 4
+        },
+        {
+            "question": "Which tag is used to create a dropdown menu?",
+            "choices": ["<input>", "<select>", "<option>", "<dropdown>"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>Which attribute specifies that an input field must be filled before submitting a form?<WordWrap>",
+            "choices": ["validate", "required", "mandatory", "needed"],
+            "answer": 2
+        },
+        {
+            "question": "Which tag is used to define emphasized text?",
+            "choices": ["<i>", "<b>", "<strong>", "<em>"],
+            "answer": 4
+        },
+        {
+            "question": "<WordWrap>Which attribute is used to open a hyperlink in a new tab?<WordWrap>",
+            "choices": ["target='_blank'", "newwindow='yes'", "open='new'", "rel='external'"],
+            "answer": 1
+        },
+        {
+            "question": "Which HTML tag is used to define a quotation?",
+            "choices": ["<q>", "<blockquote>", "<quote>", "<cite>"],
+            "answer": 2
+        },
+        {
+            "question": "Which element is used to structure an article in HTML?",
+            "choices": ["<section>", "<article>", "<div>", "<aside>"],
+            "answer": 2
+        }
+    ],
+
+    "css": [
+        { 
+            "question": "What does CSS stand for?", 
+            "choices": ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"], 
+            "answer": 2 
+        },
+        { 
+            "question": "Which property is used to change the background color in CSS?", 
+            "choices": ["bgcolor", "background", "background-color", "color"], 
+            "answer": 3 
+        },
+        { 
+            "question": "How do you select all elements of a particular type in CSS?", 
+            "choices": ["#element", ".element", "element", "*"], 
+            "answer": 3 
+        },
+        { 
+            "question": "Which CSS property controls the text size?", 
+            "choices": ["font-style", "text-style", "text-size", "font-size"], 
+            "answer": 4 
+        },
+        { 
+            "question": "Which CSS selector is used to target an element with a specific ID?", 
+            "choices": ["#", ".", ":", "*"], 
+            "answer": 1 
+        },
+        { 
+            "question": "What is the correct way to apply external CSS?", 
+            "choices": ["<style>", "<css>", "<link>", "<stylesheet>"], 
+            "answer": 3 
+        },
+        { 
+            "question": "Which property is used to make text bold in CSS?", 
+            "choices": ["text-bold", "font-weight", "font-style", "text-style"], 
+            "answer": 2 
+        },
+        { 
+            "question": "How do you apply a border in CSS?", 
+            "choices": ["border: 1px solid black;", "border-width: 1px;", "border-color: black;", "border-style: solid;"], 
+            "answer": 1 
+        },
+        { 
+            "question": "Which CSS property controls the space between lines of text?", 
+            "choices": ["spacing", "line-height", "letter-spacing", "text-indent"], 
+            "answer": 2 
+        },
+        { 
+            "question": "What is the default value of the position property in CSS?", 
+            "choices": ["relative", "absolute", "static", "fixed"], 
+            "answer": 3 
+        },
+        { 
+            "question": "How do you apply a CSS rule to all <p> elements?", 
+            "choices": ["p { ... }", ".p { ... }", "#p { ... }", "<p> { ... }"], 
+            "answer": 1 
+        },
+        { 
+            "question": "Which CSS property is used to make text bold?", 
+            "choices": ["font-weight", "text-bold", "font-style", "bold"], 
+            "answer": 1 
+        },
+        { 
+            "question": "What unit is used in CSS for relative font sizes?", 
+            "choices": ["px", "em", "cm", "pt"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>What is the default value of the background-color property?<WordWrap>", 
+            "choices": ["white", "transparent", "black", "none"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>What type of CSS is used in the following code? \n<style> p { color: red; font-size: 16px; }</style><WordWrap>", 
+            "choices": ["External CSS", "Internal CSS", "Inline CSS", "None of the above"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>What type of CSS is used in the following code? <tag style='property: value'> </tag><WordWrap>", 
+            "choices": ["External CSS", "Internal CSS", "Inline CSS", "None of the above"], 
+            "answer": 3 
+        },
+        { 
+            "question": "<WordWrap>Which CSS property is used to control the space outside an element’s border?<WordWrap>", 
+            "choices": ["padding", "margin", "spacing", "border-spacing"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>How do you apply an inline CSS style to a <div> element?<WordWrap>", 
+            "choices": ["<div class='style'>", "<div style='color: blue;'>", "<div css='color: blue;'>", "<div id='style'>"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>What is the correct way to apply multiple CSS classes to an element?<WordWrap>", 
+            "choices": ["class='firstClass secondClass'", "class=’firstClass, secondClass’", "class=’firstClass; secondClass’", "class=’firstClass.secondClass'"], 
+            "answer": 1 
+        },
+        { 
+            "question": "Which CSS property is used to make an element’s text uppercase?", 
+            "choices": ["text-transform", "text-style", "font-case", "text-uppercase"], 
+            "answer": 1 
+        },
+        {
+            "question": "Which CSS property is used to hide an element?",
+            "choices": ["visibility: none;", "display: none;", "hidden: true;", "opacity: 0;"],
+            "answer": 2
+        },
+        {
+            "question": "What does the z-index property control?",
+            "choices": ["Font size", "Stacking order", "Element width", "Opacity"],
+            "answer": 2
+        },
+        {
+            "question": "Which CSS property makes the text italic?",
+            "choices": ["text-style", "font-italic", "font-style", "italic"],
+            "answer": 3
+        },
+        {
+            "question": "Which pseudo-class selects the first child of an element?",
+            "choices": [":first", ":first-child", ":nth-child(1)", ":begin"],
+            "answer": 2
+        },
+        {
+            "question": "How do you select an element with a specific class in CSS?",
+            "choices": ["#className", ".className", "className", "*className"],
+            "answer": 2
+        },
+        {
+            "question": "Which of the following is NOT a valid CSS unit?",
+            "choices": ["px", "rem", "cm", "sec"],
+            "answer": 4
+        },
+        {
+            "question": "Which CSS property is used to create rounded corners?",
+            "choices": ["corner-radius", "border-round", "border-radius", "round-corner"],
+            "answer": 3
+        },
+        {
+            "question": "How do you make an image responsive in CSS?",
+            "choices": ["Set width to auto", "Use max-width: 100%", "Use height: auto", "Set width in px"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>Which property is used to add space inside an element, between the content and the border?<WordWrap>",
+            "choices": ["padding", "margin", "spacing", "border-spacing"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>Which value of the position property will position the element relative to its normal position?<WordWrap>",
+            "choices": ["absolute", "fixed", "relative", "static"],
+            "answer": 3
+        },
+        {
+            "question": "Which CSS property changes the text color of an element?",
+            "choices": ["font-color", "text-color", "color", "background-color"],
+            "answer": 3
+        },
+        {
+            "question": "What does the 'px' unit stand for in CSS?",
+            "choices": ["Proportional size", "Percentage", "Pixel", "Point"],
+            "answer": 3
+        },
+        {
+            "question": "<WordWrap>Which CSS property controls the transparency of an element?<WordWrap>",
+            "choices": ["visibility", "opacity", "filter", "alpha"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>How do you apply styles to multiple elements of the same type?<WordWrap>",
+            "choices": ["Use an ID", "Use a class", "Use an element selector", "Use inline styles"],
+            "answer": 3
+        },
+        {
+            "question": "<WordWrap>Which CSS pseudo-class is used to select the last child of an element?<WordWrap>",
+            "choices": [":last", ":end", ":last-child", ":nth-child(last)"],
+            "answer": 3
+        },
+        {
+            "question": "<WordWrap>Which display property removes an element from the layout flow?<WordWrap>",
+            "choices": ["visibility: hidden;", "display: none;", "opacity: 0;", "overflow: hidden;"],
+            "answer": 2
+        },
+        {
+            "question": "What is the default flex-direction in a flex container?",
+            "choices": ["column", "row", "row-reverse", "column-reverse"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>Which property makes an element stick to the viewport while scrolling?<WordWrap>",
+            "choices": ["fixed", "absolute", "sticky", "relative"],
+            "answer": 3
+        },
+        {
+            "question": "Which CSS function is used to rotate an element?",
+            "choices": ["rotate()", "skew()", "translate()", "transform()"],
+            "answer": 4
+        },
+        {
+            "question": "Which CSS media query adjusts styles based on screen width?",
+            "choices": ["@viewport", "@screen", "@media", "@device"],
+            "answer": 3
+        }
+    ],
+    "python": [
+        { 
+            "question": "<WordWrap>What is the correct file extension for Python files?<WordWrap>", 
+            "choices": [".pyth", ".pt", ".py", ".p"], 
+            "answer": 3 
+        },
+        { 
+            "question": "How do you display output in Python?", 
+            "choices": ["echo()", "print()", "display()", "write()"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>Which data type is used to store a sequence of characters in Python?<WordWrap>", 
+            "choices": ["int", "float", "str", "bool"], 
+            "answer": 3 
+        },
+        { 
+            "question": "How do you start a comment in Python?", 
+            "choices": ["//", "<!--", "#", "/*"], 
+            "answer": 3 
+        },
+        { 
+            "question": "Which keyword is used to define a function in Python?", 
+            "choices": ["define", "func", "def", "function"], 
+            "answer": 3 
+        },
+        { 
+            "question": "What is the output of print(type([]))?", 
+            "choices": ["<class 'tuple'>", "<class 'dict'>", "<class 'list'>", "<class 'set'>"], 
+            "answer": 3 
+        },
+        { 
+            "question": "<WordWrap>How do you create a loop that iterates over a sequence in Python?<WordWrap>", 
+            "choices": ["for", "while", "loop", "repeat"], 
+            "answer": 1 
+        },
+        { 
+            "question": "Which operator is used for exponentiation in Python?", 
+            "choices": ["^", "**", "//", "%"], 
+            "answer": 2 
+        },
+        { 
+            "question": "What is the correct way to declare a variable in Python?", 
+            "choices": ["var x = 5", "x := 5", "let x = 5", "x = 5"], 
+            "answer": 4 
+        },
+        { 
+            "question": "What will len('hello') return?", 
+            "choices": ["4", "5", "6", "d"], 
+            "answer": 2 
+        },
+        { 
+            "question": "What is the % operator in Python?", 
+            "choices": ["Modulus Operator", "Exponentiation Operator", "Floor Division Operator", "Assignment Operator"], 
+            "answer": 1 
+        },
+        { 
+            "question": "Which variable name is correct in Python?", 
+            "choices": ["42_variable = 'Hello'", "_spam = 'Hello'", "%$@variable = 'Hello'", "your_variable = 'Hello'"], 
+            "answer": 4 
+        },
+        { 
+            "question": "<WordWrap>Which of the following is the correct way to declare a list in Python?<WordWrap>", 
+            "choices": ["list = {1, 2, 3, 4}", "list = (1, 2, 3, 4)", "list = [1, 2, 3, 4]", "list = <1, 2, 3, 4>"], 
+            "answer": 3 
+        },
+        { 
+            "question": "<WordWrap>Which of the following statements will correctly check if x is equal to 10?<WordWrap>", 
+            "choices": ["if x = 10:", "if x == 10:", "if x === 10:", "if (x,10):"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>What will be the output of the following code?\nprint(5 // 2)<WordWrap>", 
+            "choices": ["2.5", "2", "3", "2.0"], 
+            "answer": 2 
+        },
+        { 
+            "question": "Which of the following is NOT a valid Python data type?", 
+            "choices": ["int", "real", "list", "tuple"], 
+            "answer": 2 
+        },
+        { 
+            "question": "What will be the result of the following operation?\n10 % 3", 
+            "choices": ["3", "1", "0", "10"], 
+            "answer": 2 
+        },
+        { 
+            "question": "Which function is used to get user input in Python?", 
+            "choices": ["input()", "read()", "scan()", "getInput()"], 
+            "answer": 1 
+        },
+        { 
+            "question": "Which of the following is NOT a Python keyword?", 
+            "choices": ["pass", "loop", "return", "import"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>What is the default return type of a function in Python if no return statement is specified?<WordWrap>", 
+            "choices": ["int", "None", "str", "float"], 
+            "answer": 2 
+        },
+        { 
+            "question": "Which of the following is a mutable data type in Python?", 
+            "choices": ["tuple", "str", "list", "int"], 
+            "answer": 3 
+        },
+        { 
+            "question": "What will be the output of print(range(5)) in Python 3?", 
+            "choices": ["[0,1,2,3,4]", "(0,1,2,3,4)", "range(0, 5)", "5"], 
+            "answer": 3 
+        },
+        { 
+            "question": "<WordWrap>Which of the following is the correct way to specify a default value for a function parameter?<WordWrap>", 
+            "choices": ["def func(x := 10):", "def func(x = 10):", "def func(default(x) = 10):", "func(x) = 10"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>Which of the following is used to create an instance of a class in Python?<WordWrap>", 
+            "choices": ["def", "new", "self", "__init__"], 
+            "answer": 4 
+        },
+        { 
+            "question": "<WordWrap>Which mode is used to open a file for writing while preserving existing content?<WordWrap>", 
+            "choices": ["w", "r+", "a", "x"], 
+            "answer": 3 
+        },
+        { 
+            "question": "<WordWrap>What type of error does the following code produce?\nprint(10 / 0)<WordWrap>", 
+            "choices": ["SyntaxError", "ZeroDivisionError", "TypeError", "IndexError"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>Which of the following correctly creates a list of squares of numbers from 1 to 5?<WordWrap>", 
+            "choices": ["[x*x for x in range(1,6)]", "{x*x for x in range(1,6)}", "(x*x for x in range(1,6))", "list(x*x for x in range(1,6))"], 
+            "answer": 1 
+        },
+        { 
+            "question": "<WordWrap>What is the purpose of Python’s del statement?<WordWrap>", 
+            "choices": ["Deletes a function", "Removes a key from a dictionary", "Deletes an object reference", "Clears a list"], 
+            "answer": 3 
+        },
+        { 
+            "question": "<WordWrap>Which of the following is the correct way to import the math module in Python?<WordWrap>", 
+            "choices": ["import math", "from math import all", "import math as m", "both 1 and 3"], 
+            "answer": 4 
+        }
+    ],
+    "DS_Easy": [
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        }
+    ],
+    "DS_Med": [
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        }
+    ],    
+    "DS_Hard": [
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        },
+        { 
+            "question": "", 
+            "choices": ["", "", "", ""], 
+            "answer": 1 
+        }
+    ]
+
+
+
+}

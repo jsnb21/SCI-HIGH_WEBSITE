@@ -1,0 +1,16 @@
+Plugins:
+SRDude
+Yanfly
+taaspider
+Vlue Au'Vier
+Rocketmancer
+mjshi
+
+Window Skins: 
+Skotty TV
+
+Tilsets:
+whtdragons
+Candacis
+com-sho
+bougainvillea
