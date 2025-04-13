@@ -1,3 +1,11 @@
+/*:
+ * @plugindesc Calls a Loading Screen to make sure everything is loaded properly.
+ * @author Scott
+ *
+ * @help
+ * Calls a Loading Screen to make sure everything is loaded properly.
+ */
+
 // File: PreloadJSON.js
 (() => {
     const JSON_FILES_TO_LOAD = [
@@ -14,7 +22,7 @@
     Scene_LoadingAssets.prototype.initialize = function () {
       Scene_Base.prototype.initialize.call(this);
       this._loadedCount = 0;
-      this._minimumTime = 180; // 60 frames per second × 3 = 3 seconds
+      this._minimumTime = 60; // 60 frames per second × 3 = 3 seconds
       this._elapsedTime = 0;
       this._fadeOutStarted = false;
       this._nextScene = Scene_Map;
