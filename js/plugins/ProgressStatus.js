@@ -97,8 +97,19 @@
         this.drawText("Python: " + pythonValue + "%", startX, startY + lineHeight * 2, gaugeWidth, 'left');
         this.drawGauge(startX, startY + lineHeight * 2 + 20, gaugeWidth, pythonValue / 100, color1, color2);
 
-        this.drawText("DS & Algorithms: " + dsValue + "%", startX, startY + lineHeight * 3, gaugeWidth, 'left');
-        this.drawGauge(startX, startY + lineHeight * 3 + 20, gaugeWidth, dsValue / 100, color1, color2);
+        let unlocked = htmlValue >= 100 && cssValue >= 100 && pythonValue >= 100;
+
+        if (unlocked) {
+            this.drawText("DS & Algorithms: " + dsValue + "%", startX, startY + lineHeight * 3, gaugeWidth, 'left');
+            this.drawGauge(startX, startY + lineHeight * 3 + 20, gaugeWidth, dsValue / 100, color1, color2);
+        } else {
+            this.changePaintOpacity(false);
+            this.drawText("???", startX, startY + lineHeight * 3, gaugeWidth, 'left');
+            this.drawGauge(startX, startY + lineHeight * 3 + 20, gaugeWidth, dsValue / 100, color1, color2);
+            this.changePaintOpacity(true);
+        }
+
+
     };
 
 })();
