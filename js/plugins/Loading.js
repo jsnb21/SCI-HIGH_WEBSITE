@@ -9,7 +9,8 @@
 // File: PreloadJSON.js
 (() => {
     const JSON_FILES_TO_LOAD = [
-      "quizData.json"
+      "quizData.json",
+      "books.json",
     ];
   
     function Scene_LoadingAssets() {
