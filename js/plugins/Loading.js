@@ -9,8 +9,8 @@
 // File: PreloadJSON.js
 (() => {
     const JSON_FILES_TO_LOAD = [
-      "quizData.json",
-      "books.json",
+      "data/quizData.json",
+      "../../books.json",  
     ];
   
     function Scene_LoadingAssets() {
@@ -53,7 +53,7 @@
       this._loadedData = {};
   
       JSON_FILES_TO_LOAD.forEach(filename => {
-        const url = "data/" + filename;
+        const url = filename;
         const xhr = new XMLHttpRequest();
         xhr.open("GET", url);
         xhr.overrideMimeType("application/json");
