@@ -10,7 +10,6 @@
 (() => {
     const JSON_FILES_TO_LOAD = [
       "data/quizData.json",
-      "../../books.json",  
     ];
   
     function Scene_LoadingAssets() {
