@@ -1,0 +1,53 @@
+{
+    "visible": true,
+    "position": {
+        "x": 16,
+        "y": 52
+    },
+    "text": {
+        "visible": true,
+        "size": {
+            "w": 278,
+            "h": 20
+        },
+        "alignment": "center",
+        "font": {
+            "face": "Consolas",
+            "size": 16,
+            "italic": false
+        },
+        "margins": {
+            "x": 0,
+            "y": 0
+        },
+        "outline": {
+            "color": null,
+            "width": 2
+        },
+        "textColor": "#FFFFFF",
+        "shadow": {
+            "color": "#000",
+            "opacity": 200,
+            "margins": {
+                "x": 1,
+                "y": 1
+            }
+        }
+    },
+    "rect": {
+        "visible": true,
+        "size": {
+            "w": 278,
+            "h": 24
+        },
+        "fillColor": "#00082b",
+        "fillOpacity": 180,
+        "borderColor": "#000000",
+        "borderThickness": 0,
+        "borderOpacity": 255
+    },
+    "textMargins": {
+        "x": 0,
+        "y": 1
+    }
+}
