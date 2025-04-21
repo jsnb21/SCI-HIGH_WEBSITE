@@ -25,8 +25,8 @@
         this._statusWindow.y = this._commandWindow.height;
         this._goldWindow.x = Graphics.boxWidth - this._goldWindow.width;
         // Create and add the world map image
-        this._worldMapSprite = new Sprite(ImageManager.loadPicture("SchoolMap1_2_optimized"));
-        this._worldMapSprite.x = 165; // Adjust X position
+        this._worldMapSprite = new Sprite(ImageManager.loadPicture("SchoolMap"));
+        this._worldMapSprite.x = 210; // Adjust X position
         this._worldMapSprite.y = 150;  // Adjust Y position
         this._worldMapSprite.opacity = 200; // Adjust transparency if needed
         this.addChild(this._worldMapSprite);
