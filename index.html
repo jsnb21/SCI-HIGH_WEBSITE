@@ -11,6 +11,12 @@
         <title>SCI-HIGH</title>
     </head>
     <body style="background-color: black">
+        <!-- Display Variables Section -->
+        <p>HTML Value: <span id="htmlValue"></span></p>
+        <p>CSS Value: <span id="cssValue"></span></p>
+        <p>Python Value: <span id="pythonValue"></span></p>
+        <p>DS Value: <span id="dsValue"></span></p>
+
         <script type="text/javascript" src="js/libs/pixi.js"></script>
         <script type="text/javascript" src="js/libs/pixi-tilemap.js"></script>
         <script type="text/javascript" src="js/libs/pixi-picture.js"></script>
@@ -25,5 +31,28 @@
         <script type="text/javascript" src="js/rpg_windows.js"></script>
         <script type="text/javascript" src="js/plugins.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
+
+        <script>
+            // Function to update the webpage with RPG Maker variable values
+            function updateGameVariables() {
+                // Access game variables using RPG Maker's JavaScript API
+                let htmlValue = $gameVariables.value(22);  // Variable 22
+                let cssValue = $gameVariables.value(23);   // Variable 23
+                let pythonValue = $gameVariables.value(24);  // Variable 24
+                let dsValue = $gameVariables.value(25);  // Variable 25
+
+                // Update the webpage with these values
+                document.getElementById('htmlValue').textContent = htmlValue;
+                document.getElementById('cssValue').textContent = cssValue;
+                document.getElementById('pythonValue').textContent = pythonValue;
+                document.getElementById('dsValue').textContent = dsValue;
+            }
+
+            // Run the function after the game is initialized (using a timeout to wait for the game to load)
+            window.onload = function() {
+                // Wait a bit to ensure the game is initialized before accessing the game variables
+                setTimeout(updateGameVariables, 2000);  // Adjust delay as necessary
+            };
+        </script>
     </body>
 </html>
