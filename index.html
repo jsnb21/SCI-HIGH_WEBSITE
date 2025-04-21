@@ -11,12 +11,6 @@
         <title>SCI-HIGH</title>
     </head>
     <body style="background-color: black">
-        <!-- Display Variables Section -->
-        <p>HTML Value: <span id="htmlValue"></span></p>
-        <p>CSS Value: <span id="cssValue"></span></p>
-        <p>Python Value: <span id="pythonValue"></span></p>
-        <p>DS Value: <span id="dsValue"></span></p>
-
         <script type="text/javascript" src="js/libs/pixi.js"></script>
         <script type="text/javascript" src="js/libs/pixi-tilemap.js"></script>
         <script type="text/javascript" src="js/libs/pixi-picture.js"></script>
@@ -32,27 +26,49 @@
         <script type="text/javascript" src="js/plugins.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
 
-        <script>
-            // Function to update the webpage with RPG Maker variable values
-            function updateGameVariables() {
-                // Access game variables using RPG Maker's JavaScript API
-                let htmlValue = $gameVariables.value(22);  // Variable 22
-                let cssValue = $gameVariables.value(23);   // Variable 23
-                let pythonValue = $gameVariables.value(24);  // Variable 24
-                let dsValue = $gameVariables.value(25);  // Variable 25
+        <!-- Firebase SDK -->
+        <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD-Q2woACHgMCTVwd6aX-IUzLovE0ux-28",
+            authDomain: "sci-high-website.firebaseapp.com",
+            projectId: "sci-high-website",
+            storageBucket: "sci-high-website.firebasestorage.app",
+            messagingSenderId: "451463202515",
+            appId: "1:451463202515:web:e7f9c7bf69c04c685ef626"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
 
-                // Update the webpage with these values
-                document.getElementById('htmlValue').textContent = htmlValue;
-                document.getElementById('cssValue').textContent = cssValue;
-                document.getElementById('pythonValue').textContent = pythonValue;
-                document.getElementById('dsValue').textContent = dsValue;
-            }
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-            // Run the function after the game is initialized (using a timeout to wait for the game to load)
-            window.onload = function() {
-                // Wait a bit to ensure the game is initialized before accessing the game variables
-                setTimeout(updateGameVariables, 2000);  // Adjust delay as necessary
-            };
+        // Send RPG Maker game variables to Firebase
+        function sendVariablesToFirebase() {
+            const db = firebase.database();
+
+            const htmlValue = $gameVariables.value(22);
+            const cssValue = $gameVariables.value(23);
+            const pythonValue = $gameVariables.value(24);
+            const dsValue = $gameVariables.value(25);
+
+            db.ref('gameVariables').set({
+            htmlValue,
+            cssValue,
+            pythonValue,
+            dsValue
+            });
+        }
+
+        // Example: call this when player answers correctly or at intervals
+        setInterval(sendVariablesToFirebase, 3000); // every 3 seconds
         </script>
+
     </body>
 </html>
