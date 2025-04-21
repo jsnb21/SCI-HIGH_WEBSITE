@@ -37,6 +37,7 @@
         const firebaseConfig = {
             apiKey: "AIzaSyD-Q2woACHgMCTVwd6aX-IUzLovE0ux-28",
             authDomain: "sci-high-website.firebaseapp.com",
+            databaseURL: "https://sci-high-website-default-rtdb.asia-southeast1.firebasedatabase.app",
             projectId: "sci-high-website",
             storageBucket: "sci-high-website.firebasestorage.app",
             messagingSenderId: "451463202515",
@@ -50,7 +51,7 @@
         // Function to send variables
         function sendVariablesToFirebase() {
             const db = firebase.database();
-
+            console.log("Sending data to Firebase...");
             const htmlValue = $gameVariables.value(22);
             const cssValue = $gameVariables.value(23);
             const pythonValue = $gameVariables.value(24);

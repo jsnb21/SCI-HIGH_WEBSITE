@@ -18,6 +18,7 @@
     const firebaseConfig = {
         apiKey: "AIzaSyD-Q2woACHgMCTVwd6aX-IUzLovE0ux-28",
         authDomain: "sci-high-website.firebaseapp.com",
+        databaseURL: "https://sci-high-website-default-rtdb.asia-southeast1.firebasedatabase.app",
         projectId: "sci-high-website",
         storageBucket: "sci-high-website.firebasestorage.app",
         messagingSenderId: "451463202515",
@@ -29,6 +30,7 @@
 
     db.ref('gameVariables').on('value', (snapshot) => {
       const data = snapshot.val();
+      console.log("Received data:", data);
       document.getElementById('htmlValue').textContent = data.htmlValue;
       document.getElementById('cssValue').textContent = data.cssValue;
       document.getElementById('pythonValue').textContent = data.pythonValue;
