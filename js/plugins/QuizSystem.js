@@ -121,18 +121,28 @@ var QuizSystem = (function () {
             
                 // Otherwise, continue adding time
                 var newTime = currentTime + 10;
+                var actor = $gameActors.actor(1);
+                var smartWatch = actor.hasArmor($dataArmors[3])
                 $gameVariables.setValue(28, currentTime);
             
                 // Check if the new time will exceed 30 seconds
                 if (newTime >= 30) {
                     window.settimer([0, 30, 0, 0]); // Set timer to 30 seconds
                 } else {
-                    window.addtimer([0, 10, 0, 0]); // Add 10 seconds to the timer
+                    if (smartWatch) {
+                        window.addtimer([0, 15, 0, 0]); // Add 15 seconds to the timer if Smart Watch is Equipped
+                    } else {
+                        window.addtimer([0, 10, 0, 0]); // Add 10 seconds to the timer
+                    }
                 }
 
 
                 if (SceneManager._scene instanceof Scene_Battle) {
-                    SceneManager._scene._logWindow.push("addText", "Correct Answer! 10 seconds added!");
+                    if (smartWatch) {
+                        SceneManager._scene._logWindow.push("addText", "Correct Answer! 15 seconds added!");
+                    } else {
+                        SceneManager._scene._logWindow.push("addText", "Correct Answer! 10 seconds added!");
+                    }
                 }
 
                 AudioManager.playSe({ name: "Bell3", volume: 70, pitch: 100, pan: 0 });
@@ -146,12 +156,19 @@ var QuizSystem = (function () {
                 var target = -2;
                 var normalSkillId = 1;
                 var bonusSkillId = 3;
+                var powerBank = actor.hasArmor($dataArmors[2])
 
                 // Max Phone I
                 if (actor.hasWeapon($dataWeapons[2])) {
                     var bonusSkillId = 3;
                     if (actor.mp >= 10) {
-                        actor.gainMp(-10);
+                        // Power Bank
+                        if (powerBank) {
+                            actor.gainMp(-5);
+                        } else {
+                            actor.gainMp(-10);
+                        }
+
                         actor.forceAction(bonusSkillId, target);
                         BattleManager.forceAction(actor);
                     } else {
@@ -160,7 +177,14 @@ var QuizSystem = (function () {
                     }
                 } else if (actor.hasWeapon($dataWeapons[3])) /* Tab Pro Ultra + */  {
                     if (actor.mp >= 10 && actor.hp < actor.mhp) {
-                        actor.gainMp(-10);
+                         // Power Bank
+                        if (powerBank) {
+                            actor.gainMp(-5);
+                        } else {
+                            actor.gainMp(-10);
+                        }
+
+                        // Heal When Attacking
                         actor.gainHp(10);
 
                         actor.forceAction(normalSkillId, target);
@@ -171,7 +195,12 @@ var QuizSystem = (function () {
                     }
                 } else if (actor.hasWeapon($dataWeapons[4])) /* Milkway Laptop */  {
                     if (actor.mp >= 10 && actor.hp < actor.mhp) {
-                        actor.gainMp(-25);
+                         // Power Bank
+                         if (powerBank) {
+                            actor.gainMp(-12);
+                        } else {
+                            actor.gainMp(-25);
+                        }
                         actor.gainHp(10);
 
                         actor.forceAction(bonusSkillId, target);
