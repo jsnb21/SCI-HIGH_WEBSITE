@@ -177,7 +177,7 @@ var QuizSystem = (function () {
                     }
                 } else if (actor.hasWeapon($dataWeapons[3])) /* Tab Pro Ultra + */  {
                     if (actor.mp >= 10 && actor.hp < actor.mhp) {
-                         // Power Bank
+                        // Power Bank
                         if (powerBank) {
                             actor.gainMp(-5);
                         } else {
@@ -238,11 +238,11 @@ var QuizSystem = (function () {
                     }
                     
                 } else {
-                    window.addtimer([0, -5, 0, 0]);
+                    window.addtimer([0, 0, 0, 0]); // Reduce Timer, setting it to 0 for now (Balancing Purposes)
                 }
 
                 if (SceneManager._scene instanceof Scene_Battle) {
-                    SceneManager._scene._logWindow.push("addText", "Wrong answer! 5 seconds deducted!");
+                    SceneManager._scene._logWindow.push("addText", "Wrong answer!");
                 }
 
                 var enemy = $gameTroop.members()[0];
