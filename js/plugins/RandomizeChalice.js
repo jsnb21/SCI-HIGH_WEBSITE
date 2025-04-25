@@ -1,5 +1,5 @@
 /*:
-* @plugindesc Randomizes event self-switches when WinBattle switch is ON
+* @plugindesc Randomizes event self-switches when WinBattle switch is ON, with less frequent 'D' use
 * @author Scott
 *
 * @help
@@ -13,31 +13,48 @@
 var RandomEventManager = RandomEventManager || {};
 
 RandomEventManager.randomizeEvents = function() {
-    var winBattleSwitch = 2; // ID of the "WinBattle" switch
-    var variableID = 10; // ID of the variable "RandomEventID"
+    var winBattleSwitch = 2;       // ID of the "WinBattle" switch
+    var variableID = 10;           // Variable for debug or tracking
+    var lastSwitchVar = 41;        // Optional: persistent switch tracking
 
-    // Check if WinBattle switch is ON before randomizing
     if (!$gameSwitches.value(winBattleSwitch)) return;
 
-    // Reset all self-switches for events on the current map
+    let usedD = false; // New: Track if 'D' has already been used in this run
+
     $gameMap.events().forEach(event => {
+        // Reset all self-switches
         ["A", "B", "C", "D"].forEach(switchLetter => {
             $gameSelfSwitches.setValue([$gameMap.mapId(), event.eventId(), switchLetter], false);
         });
 
-        // Generate a new random value
+        // Generate a random number
         var randomEventID = Math.floor(Math.random() * 100) + 1;
         $gameVariables.setValue(variableID, randomEventID);
 
-        // Set a random self-switch based on the new value
+        // Decide switch
+        let chosenSwitch = '';
         if (randomEventID <= 50) {
-            $gameSelfSwitches.setValue([$gameMap.mapId(), event.eventId(), 'A'], true);
+            chosenSwitch = 'A';
         } else if (randomEventID <= 70) {
-            $gameSelfSwitches.setValue([$gameMap.mapId(), event.eventId(), 'B'], true);
+            chosenSwitch = 'B';
         } else if (randomEventID <= 90) {
-            $gameSelfSwitches.setValue([$gameMap.mapId(), event.eventId(), 'C'], true);
+            chosenSwitch = 'C';
         } else {
-            $gameSelfSwitches.setValue([$gameMap.mapId(), event.eventId(), 'D'], true);
+            chosenSwitch = 'D';
         }
+
+        // Prevent more than one 'D' per run
+        if (chosenSwitch === 'D') {
+            if (usedD) {
+                const fallback = ['A', 'B', 'C'];
+                chosenSwitch = fallback[Math.floor(Math.random() * fallback.length)];
+            } else {
+                usedD = true;
+            }
+        }
+
+        // Set the self-switch
+        $gameSelfSwitches.setValue([$gameMap.mapId(), event.eventId(), chosenSwitch], true);
+        $gameVariables.setValue(lastSwitchVar, chosenSwitch); // Optional: store last switch
     });
 };

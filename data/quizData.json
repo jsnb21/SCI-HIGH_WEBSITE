@@ -432,6 +432,106 @@
             "question": "Which CSS media query adjusts styles based on screen width?",
             "choices": ["@viewport", "@screen", "@media", "@device"],
             "answer": 3
+        },
+        { 
+        "question": "<WordWrap>The CSS property 'margin' controls the space inside an element's border.<WordWrap>", 
+        "choices": ["True", "False"], 
+        "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>The 'position: fixed' property makes an element move when the page is scrolled.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>The 'z-index' property only works on positioned elements (relative, absolute, fixed, sticky).<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 1 
+        },
+        { 
+            "question": "<WordWrap>The 'opacity' property can make an element completely invisible if set to 0.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 1 
+        },
+        { 
+            "question": "<WordWrap>In CSS, 'vw' stands for vertical width.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>A pseudo-class in CSS starts with a dot (.) character.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>CSS Grid allows creating layouts with rows and columns.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 1 
+        },
+        { 
+            "question": "<WordWrap>The 'transform' property can be used to rotate, scale, and move elements.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 1 
+        },
+        { 
+            "question": "<WordWrap>Using 'display: none' makes an element invisible but still takes up space.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>The 'flex-wrap' property controls whether flex items are forced onto one line.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 1 
+        },
+        { 
+            "question": "<WordWrap>CSS variables are declared using the 'var()' function.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>The 'inherit' keyword makes a CSS property inherit its value from its parent.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 1 
+        },
+        { 
+            "question": "<WordWrap>The 'border' property can be used to create a circle shape.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>The 'text-align: center' property centers text horizontally inside an element.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 1 
+        },
+        { 
+            "question": "<WordWrap>Setting 'width: 100%' on an image always makes it responsive.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>The 'overflow: hidden' property prevents content from overflowing its container.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 1 
+        },
+        { 
+            "question": "<WordWrap>CSS animations can only be triggered by user interactions like hover or click.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>The 'calc()' function in CSS can perform simple mathematical calculations.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 1 
+        },
+        { 
+            "question": "<WordWrap>CSS Flexbox is better suited for building two-dimensional layouts compared to CSS Grid.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 2 
+        },
+        { 
+            "question": "<WordWrap>Setting 'height: 0' and 'overflow: hidden' can be used to hide an element.<WordWrap>", 
+            "choices": ["True", "False"], 
+            "answer": 1 
         }
     ],
     "python": [
@@ -579,108 +679,213 @@
             "question": "<WordWrap>Which of the following is the correct way to import the math module in Python?<WordWrap>", 
             "choices": ["import math", "from math import all", "import math as m", "both 1 and 3"], 
             "answer": 4 
+        },
+        {
+            "question": "<WordWrap>Python files use the .py extension.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>The echo() function is used to display output in Python.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>Strings in Python are stored using the str data type.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>Python comments start with //<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>Functions in Python are defined using the def keyword.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>print(type([])) outputs <class 'list'>.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>Python’s for keyword is used to loop through a sequence.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>The ^ operator is used for exponentiation in Python.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>In Python, you declare a variable using x = 5.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>len('hello') returns 4.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>The % operator in Python gives the remainder of a division.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>Variable names in Python can begin with an underscore (_).<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>A list in Python can be created using square brackets [].<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>if x = 10: is the correct way to check equality in Python.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>5 // 2 in Python results in 2.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>real is a valid data type in Python.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>10 % 3 results in 1.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>The input() function is used to read user input in Python.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
+        },
+        {
+            "question": "<WordWrap>loop is a keyword in Python.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>A Python function without a return statement returns None by default.<WordWrap>",
+            "choices": ["True", "False"],
+            "answer": 1
         }
     ],
     "DS_Easy": [
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>What is the time complexity of accessing an element in an array (average case)?<WordWrap>",
+            "choices": ["O(n)", "O(log n)", "O(1)", "O(n²)"],
+            "answer": 3
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>Which data structure uses LIFO (Last In, First Out) order?<WordWrap>",
+            "choices": ["Queue", "Stack", "Linked List", "Array"],
+            "answer": 2
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>What is the primary advantage of a linked list over an array?<WordWrap>",
+            "choices": ["Faster access time", "Dynamic size", "More memory usage", "Simpler implementation"],
+            "answer": 2
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>What is the worst-case time complexity for searching in a binary search tree (BST)?<WordWrap>",
+            "choices": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+            "answer": 3
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>Which sorting algorithm has the best average-case time complexity?<WordWrap>",
+            "choices": ["Bubble Sort", "Quick Sort", "Selection Sort", "Insertion Sort"],
+            "answer": 2
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>Which data structure is used for BFS (Breadth-First Search)?<WordWrap>",
+            "choices": ["Queue", "Stack", "Array", "Set"],
+            "answer": 1
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>What is a characteristic of a queue?<WordWrap>",
+            "choices": ["Last In, First Out", "First In, First Out", "Random Order", "Sorted Access"],
+            "answer": 2
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>Which of the following methods is used to check if a given string is a palindrome?<WordWrap>",
+            "choices": ["Reverse the string and compare with the original", "Convert the string to uppercase", "Count the number of vowels", "Find the frequency of characters"],
+            "answer": 1
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>A stack follows which order of operations?<WordWrap>",
+            "choices": ["First In First Out (FIFO)", "Last In First Out (LIFO)", "Random Order", "None of the above"],
+            "answer": 2
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>How is a queue different from a stack?<WordWrap>",
+            "choices": ["Queue follows FIFO, stack follows LIFO", "Queue follows LIFO, stack follows FIFO", "Both operate in the same way", "Queue is slower than a stack"],
+            "answer": 1
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>Which sorting algorithm repeatedly swaps adjacent elements if they are in the wrong order?<WordWrap>",
+            "choices": ["Bubble Sort", "Selection Sort", "Insertion Sort", "Merge Sort"],
+            "answer": 1
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>Which operation is NOT easy to do in an array?<WordWrap>",
+            "choices": ["Accessing an element", "Inserting at the beginning", "Changing a value", "Traversing the array"],
+            "answer": 2
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>How can you check if two words are anagrams?<WordWrap>",
+            "choices": ["Sort both words and compare", "Count the vowels in both", "Reverse both words", "Check the first letter of each word"],
+            "answer": 1
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>Which sorting algorithm selects the smallest element and moves it to the front?<WordWrap>",
+            "choices": ["Bubble Sort", "Quick Sort", "Selection Sort", "Heap Sort"],
+            "answer": 3
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>What is the first step in a binary search algorithm?<WordWrap>",
+            "choices": ["Divide the list in half", "Sort the list", "Search the middle element", "Compare the first and last elements"],
+            "answer": 1
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>What is the space complexity of an in-place sorting algorithm?<WordWrap>",
+            "choices": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+            "answer": 1
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>Which operation has the fastest time complexity in a hash table?<WordWrap>",
+            "choices": ["Access", "Search", "Insert", "All of the above"],
+            "answer": 4
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>Which algorithm is used to find the shortest path in an unweighted graph?<WordWrap>",
+            "choices": ["Dijkstra’s Algorithm", "Bellman-Ford Algorithm", "BFS", "DFS"],
+            "answer": 3
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>Check the first step in binary search algorithm:<WordWrap>",
+            "choices": ["Check the first element", "Check the middle element", "Check the last element", "Check all elements one by one"],
+            "answer": 2
         },
-        { 
-            "question": "", 
-            "choices": ["", "", "", ""], 
-            "answer": 1 
+        {
+            "question": "<WordWrap>Which data structure is best for implementing undo operations?<WordWrap>",
+            "choices": ["Queue", "Stack", "Linked List", "Hash Table"],
+            "answer": 2
+        },
+        {
+            "question": "<WordWrap>In which sorting algorithm do we repeatedly divide the array into two halves?<WordWrap>",
+            "choices": ["Bubble Sort", "Selection Sort", "Merge Sort", "Insertion Sort"],
+            "answer": 3
         }
     ],
     "DS_Med": [
