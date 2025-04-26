@@ -221,14 +221,13 @@ var QuizSystem = (function () {
                 var newTime = currentTime - 5;
 
                 if (newTime <= 0) {
-                    window.settimer([0, 0.3, 0, 0]);
                     console.log("Timer is at 0. Skipping all actions.");
 
                     $gameScreen.startFlash([255, 0, 0, 160], 60);
                     const actor = $gameParty.leader();
                     if (actor && actor.isAlive()) {
                         const maxHp = actor.mhp;
-                        const damage = Math.floor(maxHp * 100); // 10% of max HP
+                        const damage = Math.floor(maxHp * 0.25); // 25% of max HP
                         actor.gainHp(-damage);
                         actor.performDamage();
                         AudioManager.playSe({ name: "Monster1", volume: 90, pitch: 100, pan: 0 });
@@ -236,6 +235,8 @@ var QuizSystem = (function () {
                         SceneManager._scene._logWindow.push("addText", "Time's up!");
                         console.log(`Player took ${damage} damage due to timeout.`);
                     }
+
+                    window.settimer([0, 1, 0, 0]);
                     
                 } else {
                     window.addtimer([0, 0, 0, 0]); // Reduce Timer, setting it to 0 for now (Balancing Purposes)
