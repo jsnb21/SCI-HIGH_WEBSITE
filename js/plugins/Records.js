@@ -61,3 +61,78 @@ function displayClearStats() {
 
     $gameScreen.startTint([0, 0, 0, 0], 60);
 }
+
+// Viewing of Stats
+
+function saveRun() {
+    var runs = JSON.parse(localStorage.getItem('SaveRuns')) || [];
+
+    var newRun = {
+        clearTime: getClearSeconds(), // Clear time in seconds
+        mistakes: $gameVariables.value(30),
+        rank: calculateRank()
+    };
+
+    runs.push(newRun);
+
+    localStorage.setItem('SaveRuns', JSON.stringify(runs));
+}
+
+function getClearSeconds() {
+    var startTime = $gameVariables.value(27);
+    var endTime = $gameSystem.playtime();
+    return endTime - startTime;
+}
+
+function rankToScore(rank) {
+    switch(rank) {
+        case "S": return 3;
+        case "A": return 2;
+        case "B": return 1;
+        default: return 0;
+    }
+}
+
+function scoreToRank(score) {
+    if (score >= 2.5) return "S";
+    if (score >= 1.5) return "A";
+    return "B";
+}
+
+
+function displayAverage() {
+    var runs = JSON.parse(localStorage.getItem('SaveRuns')) || [];
+
+    if (runs.length === 0) {
+        $gameMessage.add("No runs saved yet!");
+        return;
+    }
+    
+    var totalTime = 0;
+    var totalMistakes = 0;
+    var totalRankPoints = 0;
+
+    runs.forEach(run => {
+        totalTime += run.clearTime;
+        totalMistakes += run.mistakes;
+        totalRankPoints += rankToScore(run.rank);
+    });
+
+    var avgTimeSeconds = Math.floor(totalTime / runs.length);
+    var avgMistakes = (totalMistakes / runs.length).toFixed(2);
+    var avgRankScore = Math.round(totalRankPoints / runs.length);
+    var avgRank = scoreToRank(avgRankScore);
+
+    var minutes = Math.floor(avgTimeSeconds / 60);
+    var seconds = avgTimeSeconds % 60;
+    var formattedTime = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+    $gameMessage.setBackground(1);
+    $gameMessage.setPositionType(1);
+    $gameMessage.add(
+        "\\C[17]Average Clear Time\\C[0]: " + formattedTime +
+        "\n\\C[18]Average Mistakes\\C[0]: " + avgMistakes +
+        "\n\\C[16]Average Rank\\C[0]: " + avgRank
+    );
+}
+
