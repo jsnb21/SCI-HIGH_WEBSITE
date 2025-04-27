@@ -130,18 +130,18 @@ var QuizSystem = (function () {
                     window.settimer([0, 30, 0, 0]); // Set timer to 30 seconds
                 } else {
                     if (smartWatch) {
-                        window.addtimer([0, 15, 0, 0]); // Add 15 seconds to the timer if Smart Watch is Equipped
+                        window.addtimer([0, 10, 0, 0]); // Add 10 seconds to the timer if Smart Watch is Equipped
                     } else {
-                        window.addtimer([0, 10, 0, 0]); // Add 10 seconds to the timer
+                        window.addtimer([0, 5, 0, 0]); // Add 5 seconds to the timer
                     }
                 }
 
 
                 if (SceneManager._scene instanceof Scene_Battle) {
                     if (smartWatch) {
-                        SceneManager._scene._logWindow.push("addText", "Correct Answer! 15 seconds added!");
-                    } else {
                         SceneManager._scene._logWindow.push("addText", "Correct Answer! 10 seconds added!");
+                    } else {
+                        SceneManager._scene._logWindow.push("addText", "Correct Answer! 5 seconds added!");
                     }
                 }
 
@@ -161,17 +161,25 @@ var QuizSystem = (function () {
                 // Max Phone I
                 if (actor.hasWeapon($dataWeapons[2])) {
                     var bonusSkillId = 3;
-                    if (actor.mp >= 10) {
+                    if (actor.mp >= 20) {
                         // Power Bank
                         if (powerBank) {
-                            actor.gainMp(-5);
+                            actor.gainMp(-12);
                         } else {
-                            actor.gainMp(-10);
+                            actor.gainMp(-25);
                         }
 
-                        actor.forceAction(bonusSkillId, target);
+                        // Add Witty State
+                        actor.addState(10);
+
+                        actor.forceAction(normalSkillId, target);
                         BattleManager.forceAction(actor);
+
                     } else {
+
+                        // Remove Witty State
+                        actor.removeState(10);
+
                         actor.forceAction(normalSkillId, target);
                         BattleManager.forceAction(actor);
                     }
@@ -201,7 +209,7 @@ var QuizSystem = (function () {
                         } else {
                             actor.gainMp(-25);
                         }
-                        actor.gainHp(10);
+                        actor.gainHp(5);
 
                         actor.forceAction(bonusSkillId, target);
                         BattleManager.forceAction(actor);
