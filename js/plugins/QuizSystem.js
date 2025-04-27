@@ -240,11 +240,14 @@ var QuizSystem = (function () {
                     
                 } else {
                     window.addtimer([0, 0, 0, 0]); // Reduce Timer, setting it to 0 for now (Balancing Purposes)
+
                 }
 
                 if (SceneManager._scene instanceof Scene_Battle) {
                     SceneManager._scene._logWindow.push("addText", "Wrong answer!");
                 }
+
+                $gameVariables.setValue(30, $gameVariables.value(30) + 1); //Add Mistake to Counter
 
                 var enemy = $gameTroop.members()[0];
                 var skills = enemy.enemy().actions.map(action => action.skillId);
