@@ -25,13 +25,10 @@
         <script type="text/javascript" src="js/rpg_windows.js"></script>
         <script type="text/javascript" src="js/plugins.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
-    </body>
 
-            <!-- Firebase SDK -->
-        <!-- Firebase SDKs (Version 8) -->
+        <!-- Firebase SDK -->
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
 
         <script>        
         // Your web app's Firebase configuration
@@ -39,16 +36,15 @@
             apiKey: "AIzaSyD-Q2woACHgMCTVwd6aX-IUzLovE0ux-28",
             authDomain: "sci-high-website.firebaseapp.com",
             projectId: "sci-high-website",
-            storageBucket: "sci-high-website.firebasestorage.app",
+            storageBucket: "sci-high-website.appspot.com", // corrected typo: '.app' → '.appspot.com'
             messagingSenderId: "451463202515",
             appId: "1:451463202515:web:e7f9c7bf69c04c685ef626"
         };
         
-
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
-        // Function to send variables
+        // Function to send variables to Firebase
         function sendVariablesToFirebase() {
             const db = firebase.database();
 
@@ -58,15 +54,49 @@
             const dsValue = $gameVariables.value(25);
 
             db.ref('gameVariables').set({
-            htmlValue,
-            cssValue,
-            pythonValue,
-            dsValue
+                htmlValue,
+                cssValue,
+                pythonValue,
+                dsValue
             });
         }
 
-        // Call it every 3 seconds (for testing)
+        // Call sendVariablesToFirebase every 3 seconds
         setInterval(sendVariablesToFirebase, 3000);
-        </script>
 
+        // Function to check Firebase connection
+        function checkFirebaseConnection() {
+            if (typeof firebase === 'undefined') {
+                console.error("Firebase SDK is not loaded.");
+                return false;
+            }
+
+            const db = firebase.database();
+            const testRef = db.ref("/connectionTest");
+
+            return new Promise((resolve, reject) => {
+                testRef.once('value')
+                    .then((snapshot) => {
+                        console.log("✅ Firebase connected successfully.");
+                        resolve(true);
+                    })
+                    .catch((error) => {
+                        console.error("❌ Failed to connect to Firebase:", error);
+                        resolve(false);
+                    });
+            });
+        }
+
+        // Run connection check when page loads
+        window.addEventListener('load', () => {
+            checkFirebaseConnection().then(isConnected => {
+                if (isConnected) {
+                    console.log("✅ Connected to Firebase!");
+                } else {
+                    console.log("❌ Not connected to Firebase.");
+                }
+            });
+        });
+        </script>
+    </body>
 </html>
