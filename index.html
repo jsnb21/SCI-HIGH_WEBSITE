@@ -26,4 +26,47 @@
         <script type="text/javascript" src="js/plugins.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </body>
+
+            <!-- Firebase SDK -->
+        <!-- Firebase SDKs (Version 8) -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+
+        <script>        
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD-Q2woACHgMCTVwd6aX-IUzLovE0ux-28",
+            authDomain: "sci-high-website.firebaseapp.com",
+            projectId: "sci-high-website",
+            storageBucket: "sci-high-website.firebasestorage.app",
+            messagingSenderId: "451463202515",
+            appId: "1:451463202515:web:e7f9c7bf69c04c685ef626"
+        };
+        
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Function to send variables
+        function sendVariablesToFirebase() {
+            const db = firebase.database();
+
+            const htmlValue = $gameVariables.value(22);
+            const cssValue = $gameVariables.value(23);
+            const pythonValue = $gameVariables.value(24);
+            const dsValue = $gameVariables.value(25);
+
+            db.ref('gameVariables').set({
+            htmlValue,
+            cssValue,
+            pythonValue,
+            dsValue
+            });
+        }
+
+        // Call it every 3 seconds (for testing)
+        setInterval(sendVariablesToFirebase, 3000);
+        </script>
+
 </html>
