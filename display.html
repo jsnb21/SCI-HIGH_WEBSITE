@@ -7,7 +7,7 @@
   <h2>Leaderboards!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h2>
 
   <!-- Div for player leaderboard -->
-  <div id="playerRecordsContainer" style="padding: 20px;"></div>
+  <div id="playerRecordsContainer" style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100vh;"></div>
 
 
   <!-- Firebase SDK -->
@@ -72,7 +72,10 @@
               return;
           }
 
-          container.innerHTML = ''; // Clear previous content
+          // Clear the container before appending new content
+          container.innerHTML = ''; 
+          // Create a single wrapper div for all player records
+          const wrapper = document.createElement('div');
 
           players.forEach((player, index) => {
               const playerElement = document.createElement('div');

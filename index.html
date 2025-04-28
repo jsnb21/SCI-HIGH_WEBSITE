@@ -62,29 +62,47 @@ function sendVariablesToFirebase() {
     if (saveRunsData) {
         const runs = JSON.parse(saveRunsData);
 
-        runs.forEach(run => {
-            const htmlValue = $gameVariables.value(22) || 0;
-            const cssValue = $gameVariables.value(23) || 0;
-            const pythonValue = $gameVariables.value(24) || 0;
-            const dsValue = $gameVariables.value(25) || 0;
-            const totalScore = htmlValue + cssValue + pythonValue + dsValue; // Calculate total score
+        // Use Number as ID
+        // Get the counter first
+        const counterRef = db.ref('playerRecordsCounter');
 
-            const newRecordRef = db.ref('playerRecords').push();
-            newRecordRef.set({
-                name: $gameParty.leader().name() || "Unknown",
-                score: totalScore,
-                htmlScore: htmlValue || 0,
-                cssScore: cssValue || 0,
-                pythonScore: pythonValue || 0,
-                dsScore: dsValue || 0,
-                clearTime: run.clearTime || 0, 
-                mistakes: run.mistakes || 0,
-                rank: run.rank || "None",        
-                timestamp: Date.now()
+        counterRef.transaction(currentValue => {
+            return (currentValue || 0) + 1; // Increment safely
+        }).then(counterSnapshot => {
+            let nextId = counterSnapshot.snapshot.val();
+
+            runs.forEach(run => {
+                const htmlValue = run.html || 0;
+                const cssValue = run.css || 0;
+                const pythonValue = run.python || 0;
+                const dsValue = run.ds || 0;
+                const totalScore = htmlValue + cssValue + pythonValue + dsValue;
+
+                const playerName = $gameParty.leader().name() || "Unknown";
+
+                const recordRef = db.ref('playerRecords/' + nextId);
+
+                recordRef.set({
+                    name: playerName,
+                    score: totalScore,
+                    htmlScore: htmlValue,
+                    cssScore: cssValue,
+                    pythonScore: pythonValue,
+                    dsScore: dsValue,
+                    clearTime: run.clearTime || 0,
+                    mistakes: run.mistakes || 0,
+                    rank: run.rank || "None",
+                    timestamp: Date.now()
+                });
+
+                console.log(`Uploaded run to ID ${nextId}`);
+
+                nextId++;
             });
+        }).catch(error => {
+            console.error('Failed to update playerRecordsCounter:', error);
         });
 
-        console.log(`Uploaded ${runs.length} saved runs to Firebase with extra fields.`);
     } else {
         console.warn('No SaveRuns data found in localStorage.');
     }
