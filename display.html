@@ -66,6 +66,10 @@
                     CSS: ${player.cssScore} | 
                     Python: ${player.pythonScore} | 
                     DS: ${player.dsScore}
+                    Clear Time: ${player.clearTime} |
+                    Mistakes: ${player.mistakes} |
+                    Rank: ${player.rank} |
+                    Timestamp: ${new Date(player.timestamp).toLocaleString()}
                 `;
                 container.appendChild(playerElement);
             });

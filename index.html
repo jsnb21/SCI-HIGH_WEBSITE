@@ -56,35 +56,41 @@
     
 // Send Game Variables
 function sendVariablesToFirebase() {
-    if (typeof $gameVariables !== 'undefined' && $gameVariables !== null) {
-        const db = firebase.database();
+    const db = firebase.database();
+    const saveRunsData = localStorage.getItem('SaveRuns');
 
-        const htmlValue = $gameVariables.value(22) || 0;
-        const cssValue = $gameVariables.value(23) || 0;
-        const pythonValue = $gameVariables.value(24) || 0;
-        const dsValue = $gameVariables.value(25) || 0;
+    if (saveRunsData) {
+        const runs = JSON.parse(saveRunsData);
 
-        const totalScore = htmlValue + cssValue + pythonValue + dsValue;
+        runs.forEach(run => {
+            const totalScore = 
+                (run.html || 0) + 
+                (run.css || 0) + 
+                (run.python || 0) + 
+                (run.ds || 0);
 
-        const playerName = $gameVariables.value(26) || "Unknown"; 
-        // (Assuming you save the player name in Variable 26. Adjust if needed!)
-
-        const newRecordRef = db.ref('playerRecords').push();
-        newRecordRef.set({
-            name: playerName,
-            score: totalScore,
-            htmlScore: htmlValue,
-            cssScore: cssValue,
-            pythonScore: pythonValue,
-            dsScore: dsValue,
-            timestamp: Date.now()
+            const newRecordRef = db.ref('playerRecords').push();
+            newRecordRef.set({
+                name: $gameParty.leader().name() || "Unknown",
+                score: totalScore,
+                htmlScore: run.html || 0,
+                cssScore: run.css || 0,
+                pythonScore: run.python || 0,
+                dsScore: run.ds || 0,
+                clearTime: run.clearTime || 0,  
+                mistakes: run.mistakes || 0,     
+                rank: run.rank || "None",        
+                timestamp: Date.now()
+            });
         });
 
-        console.log('Player record sent to Firebase:', playerName, totalScore);
+        console.log(`Uploaded ${runs.length} saved runs to Firebase with extra fields.`);
     } else {
-        console.warn('$gameVariables is not ready yet.');
+        console.warn('No SaveRuns data found in localStorage.');
     }
 }
+
+
 
     
 // wait for the game scene to start
@@ -96,11 +102,10 @@ SceneManager.onSceneStart = function() {
     const checkVariablesReady = setInterval(() => {
         if (typeof $gameVariables !== 'undefined' && $gameVariables !== null) {
             clearInterval(checkVariablesReady); // stop checking
-            console.log('$gameVariables is ready! You can now manually send data to Firebase.');
         } else {
-            console.warn('$gameVariables is not ready yet. Waiting...');
+
         }
-    }, 1000); // check faster (every second instead of 3 sec)
+    }, 5000); // check faster (every second instead of 3 sec)
 };
 
 
