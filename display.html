@@ -7,7 +7,7 @@
   <h2>Leaderboards!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h2>
 
   <!-- Div for player leaderboard -->
-  <div id="playerRecordsContainer" style="padding: 20px;"></div>
+  <div id="playerRecordsContainer" style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100vh;"></div>
 
 
   <!-- Firebase SDK -->
@@ -28,59 +28,82 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-
-    // / Function to display all player records from Firebase
-    function displayAllPlayerRecords() {
-      const db = firebase.database();
-      
-      db.ref('playerRecords')
-        .orderByChild('score') // Order by score
-        .once('value') 
-        .then(snapshot => {
-            const players = [];
-            snapshot.forEach(childSnapshot => {
-                players.push(childSnapshot.val());
-            });
+    function convertRankToHTML(rankString) {
+      // Mapping of RPGMaker color indexes to hex codes
+      const colorMap = {
+          16: "#FFD700", // Gold color for A Rank
+          17: "#00FFFF", // Cyan color for S Rank
+          18: "#FF4500", // Orange color for B Rank
+          0: "#FFFFFF"   // Default white color
+      };
   
-            players.reverse(); // High scores first
+      // Match the pattern \\C[n]
+      const colorRegex = /\\C\[(\d+)\](.*?)\\C\[0\]/;
   
-            const container = document.getElementById('playerRecordsContainer');
-            if (!container) {
-                console.warn('No container element found to display player records!');
-                return;
-            }
+      const match = rankString.match(colorRegex);
+      if (match) {
+          const colorIndex = parseInt(match[1]);
+          const text = match[2];
+          const color = colorMap[colorIndex] || "#FFFFFF";
   
-            container.innerHTML = ''; // Clear previous content
-  
-            players.forEach((player, index) => {
-                const playerElement = document.createElement('div');
-                playerElement.style.color = 'black';
-                playerElement.style.marginBottom = '10px';
-                playerElement.innerHTML = `
-                    <strong>#${index + 1}</strong> 
-                    Name: ${player.name} | 
-                    Score: ${player.score} | 
-                    HTML: ${player.htmlScore} | 
-                    CSS: ${player.cssScore} | 
-                    Python: ${player.pythonScore} | 
-                    DS: ${player.dsScore} |
-                    Clear Time: ${player.clearTime} |
-                    Mistakes: ${player.mistakes} |
-                    Rank: ${player.rank} |
-                    Timestamp: ${new Date(player.timestamp).toLocaleString()}
-                `;
-                container.appendChild(playerElement);
-            });
-  
-            console.log(`Displayed ${players.length} player records.`);
-        })
-        .catch(error => {
-            console.error('Error fetching player records:', error);
-        });
+          return `<span style="color: ${color}; font-weight: bold;">${text}</span>`;
+      } else {
+          return rankString; // If no color code, return as is
+      }
   }
+  // / Function to display all player records from Firebase
+  function displayAllPlayerRecords() {
+    const db = firebase.database();
+    
+    db.ref('playerRecords')
+      .orderByChild('score') // Order by score
+      .once('value') 
+      .then(snapshot => {
+          const players = [];
+          snapshot.forEach(childSnapshot => {
+              players.push(childSnapshot.val());
+          });
 
-  window.addEventListener('load', function() {
+          players.reverse(); // High scores first
+
+          const container = document.getElementById('playerRecordsContainer');
+          if (!container) {
+              console.warn('No container element found to display player records!');
+              return;
+          }
+
+          container.innerHTML = ''; // Clear previous content
+
+          players.forEach((player, index) => {
+              const playerElement = document.createElement('div');
+              playerElement.style.color = 'black';
+              playerElement.style.marginBottom = '10px';
+              playerElement.innerHTML = `
+                  <strong>#${index + 1}</strong> 
+                  Name: ${player.name} | 
+                  Score: ${player.score} | 
+                  HTML: ${player.htmlScore} | 
+                  CSS: ${player.cssScore} | 
+                  Python: ${player.pythonScore} | 
+                  DS: ${player.dsScore} |
+                  Average Clear Time: ${player.clearTime} |
+                  Average Mistakes Per Run: ${player.mistakes} |
+                  Average Rank: ${player.rank} |
+                  Timestamp: ${new Date(player.timestamp).toLocaleString()}
+              `;
+              container.appendChild(playerElement);
+          });
+
+          console.log(`Displayed ${players.length} player records.`);
+      })
+      .catch(error => {
+          console.error('Error fetching player records:', error);
+      });
+}
+
+window.addEventListener('load', function() {
     displayAllPlayerRecords();
+    setInterval(displayAllPlayerRecords, 2000); // Reload every 2 seconds
 });
 
   
