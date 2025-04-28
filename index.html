@@ -27,11 +27,10 @@
         <script type="text/javascript" src="js/main.js"></script>
 
         <!-- Firebase SDK -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
         <script type="module">
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js";
-            import { getDatabase } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js";
-            import { getAuth } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js";
-            
+          
             
             // Your web app's Firebase configuration
             const firebaseConfig = {
@@ -45,9 +44,6 @@
             };
             
             
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-    
             // Initialize Firebase
             firebase.initializeApp(firebaseConfig);
     
@@ -81,6 +77,5 @@
             // Example: call this when player answers correctly or at intervals
             setInterval(sendVariablesToFirebase, 3000); // every 3 seconds
             </script>
-    
-        </body>
-    </html>
+    </body>
+</html>
