@@ -16,13 +16,16 @@
 
   <script>
     const firebaseConfig = {
-        apiKey: "AIzaSyD-Q2woACHgMCTVwd6aX-IUzLovE0ux-28",
-        authDomain: "sci-high-website.firebaseapp.com",
-        projectId: "sci-high-website",
-        storageBucket: "sci-high-website.firebasestorage.app",
-        messagingSenderId: "451463202515",
-        appId: "1:451463202515:web:e7f9c7bf69c04c685ef626"
-    };
+      apiKey: "AIzaSyD-Q2woACHgMCTVwd6aX-IUzLovE0ux-28",
+      authDomain: "sci-high-website.firebaseapp.com",
+      databaseURL: "https://sci-high-website-default-rtdb.asia-southeast1.firebasedatabase.app", // ✅ Added!
+      projectId: "sci-high-website",
+      storageBucket: "sci-high-website.appspot.com", // ✅ Corrected
+      messagingSenderId: "451463202515",
+      appId: "1:451463202515:web:e7f9c7bf69c04c685ef626"
+  };
+  
+  
 
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
