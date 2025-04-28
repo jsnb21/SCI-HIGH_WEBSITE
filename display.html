@@ -77,7 +77,6 @@
           players.forEach((player, index) => {
               const playerElement = document.createElement('div');
               const rankHtml = convertRankToHTML(player.rank);
-              container.innerHTML = rankHtml;
               playerElement.style.color = 'black';
               playerElement.style.marginBottom = '10px';
               playerElement.innerHTML = `
