@@ -1,29 +1,110 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="viewport" content="user-scalable=no">
-        <link rel="icon" href="icon/icon.png" type="image/png">
-        <link rel="apple-touch-icon" href="icon/icon.png">
-        <link rel="stylesheet" type="text/css" href="fonts/gamefont.css">
-        <title>SCI-HIGH</title>
-    </head>
-    <body style="background-color: black">
-        <script type="text/javascript" src="js/libs/pixi.js"></script>
-        <script type="text/javascript" src="js/libs/pixi-tilemap.js"></script>
-        <script type="text/javascript" src="js/libs/pixi-picture.js"></script>
-        <script type="text/javascript" src="js/libs/fpsmeter.js"></script>
-        <script type="text/javascript" src="js/libs/lz-string.js"></script>
-        <script type="text/javascript" src="js/libs/iphone-inline-video.browser.js"></script>
-        <script type="text/javascript" src="js/rpg_core.js"></script>
-        <script type="text/javascript" src="js/rpg_managers.js"></script>
-        <script type="text/javascript" src="js/rpg_objects.js"></script>
-        <script type="text/javascript" src="js/rpg_scenes.js"></script>
-        <script type="text/javascript" src="js/rpg_sprites.js"></script>
-        <script type="text/javascript" src="js/rpg_windows.js"></script>
-        <script type="text/javascript" src="js/plugins.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>SCI-HIGH</title>
+    <link rel="icon" href="icon/icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="icon/icon.png">
+    <link rel="stylesheet" type="text/css" href="fonts/gamefont.css">
+</head>
+<body style="background-color: black;">
+
+    <!-- Game Scripts -->
+    <script src="js/libs/pixi.js"></script>
+    <script src="js/libs/pixi-tilemap.js"></script>
+    <script src="js/libs/pixi-picture.js"></script>
+    <script src="js/libs/fpsmeter.js"></script>
+    <script src="js/libs/lz-string.js"></script>
+    <script src="js/libs/iphone-inline-video.browser.js"></script>
+    <script src="js/rpg_core.js"></script>
+    <script src="js/rpg_managers.js"></script>
+    <script src="js/rpg_objects.js"></script>
+    <script src="js/rpg_scenes.js"></script>
+    <script src="js/rpg_sprites.js"></script>
+    <script src="js/rpg_windows.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    
+    <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyD-Q2woACHgMCTVwd6aX-IUzLovE0ux-28",
+        authDomain: "sci-high-website.firebaseapp.com",
+        databaseURL: "https://sci-high-website-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "sci-high-website",
+        storageBucket: "sci-high-website.appspot.com",
+        messagingSenderId: "451463202515",
+        appId: "1:451463202515:web:e7f9c7bf69c04c685ef626"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Print when connected
+    firebase.database().ref(".info/connected").on("value", (snapshot) => {
+        if (snapshot.val() === true) {
+            console.log("Connected to Firebase Database!");
+        } else {
+
+        }
+    });
+    
+// Send Game Variables
+function sendVariablesToFirebase() {
+    if (typeof $gameVariables !== 'undefined' && $gameVariables !== null) {
+        const db = firebase.database();
+
+        const htmlValue = $gameVariables.value(22) || 0;
+        const cssValue = $gameVariables.value(23) || 0;
+        const pythonValue = $gameVariables.value(24) || 0;
+        const dsValue = $gameVariables.value(25) || 0;
+
+        const totalScore = htmlValue + cssValue + pythonValue + dsValue;
+
+        const playerName = $gameVariables.value(26) || "Unknown"; 
+        // (Assuming you save the player name in Variable 26. Adjust if needed!)
+
+        const newRecordRef = db.ref('playerRecords').push();
+        newRecordRef.set({
+            name: playerName,
+            score: totalScore,
+            htmlScore: htmlValue,
+            cssScore: cssValue,
+            pythonScore: pythonValue,
+            dsScore: dsValue,
+            timestamp: Date.now()
+        });
+
+        console.log('Player record sent to Firebase:', playerName, totalScore);
+    } else {
+        console.warn('$gameVariables is not ready yet.');
+    }
+}
+
+    
+// wait for the game scene to start
+const _SceneManager_onSceneStart = SceneManager.onSceneStart;
+SceneManager.onSceneStart = function() {
+    _SceneManager_onSceneStart.call(this);
+
+    // wait until $gameVariables exists before allowing manual Firebase uploads
+    const checkVariablesReady = setInterval(() => {
+        if (typeof $gameVariables !== 'undefined' && $gameVariables !== null) {
+            clearInterval(checkVariablesReady); // stop checking
+            console.log('$gameVariables is ready! You can now manually send data to Firebase.');
+        } else {
+            console.warn('$gameVariables is not ready yet. Waiting...');
+        }
+    }, 1000); // check faster (every second instead of 3 sec)
+};
+
+
+    </script>
+
+</body>
 </html>
