@@ -63,22 +63,22 @@ function sendVariablesToFirebase() {
         const runs = JSON.parse(saveRunsData);
 
         runs.forEach(run => {
-            const totalScore = 
-                (run.html || 0) + 
-                (run.css || 0) + 
-                (run.python || 0) + 
-                (run.ds || 0);
+            const totalScore = htmlValue + cssValue + pythonValue + dsValue;
+            const htmlValue = $gameVariables.value(22) || 0;
+            const cssValue = $gameVariables.value(23) || 0;
+            const pythonValue = $gameVariables.value(24) || 0;
+            const dsValue = $gameVariables.value(25) || 0;
 
             const newRecordRef = db.ref('playerRecords').push();
             newRecordRef.set({
                 name: $gameParty.leader().name() || "Unknown",
                 score: totalScore,
-                htmlScore: run.html || 0,
-                cssScore: run.css || 0,
-                pythonScore: run.python || 0,
-                dsScore: run.ds || 0,
-                clearTime: run.clearTime || 0,  
-                mistakes: run.mistakes || 0,     
+                htmlScore: htmlValue || 0,
+                cssScore: cssValue || 0,
+                pythonScore: pythonValue || 0,
+                dsScore: dsValue || 0,
+                clearTime: run.clearTime || 0, 
+                mistakes: run.mistakes || 0,
                 rank: run.rank || "None",        
                 timestamp: Date.now()
             });
