@@ -77,7 +77,12 @@
         }
     }
     
-    
+    // Instead of starting immediately, wait for the game scene to start
+    const _SceneManager_onSceneStart = SceneManager.onSceneStart;
+    SceneManager.onSceneStart = function() {
+        _SceneManager_onSceneStart.call(this);
+        setInterval(sendVariablesToFirebase, 3000);
+    };
 
     // Wait for page and game to load
     window.onload = function() {
