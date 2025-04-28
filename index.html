@@ -58,28 +58,25 @@
     
     // Send Game Variables
     function sendVariablesToFirebase() {
-        if (typeof $gameVariables !== "undefined" && $gameVariables !== null) {
-            try {
-                const htmlValue = $gameVariables.value(22);
-                const cssValue = $gameVariables.value(23);
-                const pythonValue = $gameVariables.value(24);
-                const dsValue = $gameVariables.value(25);
+        if (typeof $gameVariables !== 'undefined' && $gameVariables !== null) {
+            const db = firebase.database();
     
-                firebase.database().ref('gameVariables').set({
-                    htmlValue,
-                    cssValue,
-                    pythonValue,
-                    dsValue
-                });
+            const htmlValue = $gameVariables.value(22);
+            const cssValue = $gameVariables.value(23);
+            const pythonValue = $gameVariables.value(24);
+            const dsValue = $gameVariables.value(25);
     
-                console.log("Sent variables to Firebase:", { htmlValue, cssValue, pythonValue, dsValue });
-            } catch (error) {
-                console.error("Error sending variables:", error);
-            }
+            db.ref('gameVariables').set({
+                htmlValue,
+                cssValue,
+                pythonValue,
+                dsValue
+            });
         } else {
-            console.warn("$gameVariables not ready yet.");
+            console.warn('$gameVariables is not ready yet.');
         }
     }
+    
     
 
     // Wait for page and game to load
