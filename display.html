@@ -6,6 +6,7 @@
 <body>
   <h2>Leaderboards!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h2>
 
+  <!-- Div for player leaderboard -->
   <div id="playerRecordsContainer" style="padding: 20px;"></div>
 
 
@@ -27,12 +28,14 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
+
+    // / Function to display all player records from Firebase
     function displayAllPlayerRecords() {
       const db = firebase.database();
       
       db.ref('playerRecords')
-        .orderByChild('score') // Sort by score
-        .once('value')
+        .orderByChild('score') // Order by score
+        .once('value') 
         .then(snapshot => {
             const players = [];
             snapshot.forEach(childSnapshot => {
@@ -41,7 +44,6 @@
   
             players.reverse(); // High scores first
   
-            // Now display them
             const container = document.getElementById('playerRecordsContainer');
             if (!container) {
                 console.warn('No container element found to display player records!');
@@ -61,7 +63,7 @@
                     HTML: ${player.htmlScore} | 
                     CSS: ${player.cssScore} | 
                     Python: ${player.pythonScore} | 
-                    DS: ${player.dsScore}
+                    DS: ${player.dsScore} |
                     Clear Time: ${player.clearTime} |
                     Mistakes: ${player.mistakes} |
                     Rank: ${player.rank} |

@@ -63,11 +63,11 @@ function sendVariablesToFirebase() {
         const runs = JSON.parse(saveRunsData);
 
         runs.forEach(run => {
-            const totalScore = htmlValue + cssValue + pythonValue + dsValue;
             const htmlValue = $gameVariables.value(22) || 0;
             const cssValue = $gameVariables.value(23) || 0;
             const pythonValue = $gameVariables.value(24) || 0;
             const dsValue = $gameVariables.value(25) || 0;
+            const totalScore = htmlValue + cssValue + pythonValue + dsValue; // Calculate total score
 
             const newRecordRef = db.ref('playerRecords').push();
             newRecordRef.set({
@@ -93,19 +93,19 @@ function sendVariablesToFirebase() {
 
 
     
-// wait for the game scene to start
+// wait for the game scene to start before sending data
 const _SceneManager_onSceneStart = SceneManager.onSceneStart;
 SceneManager.onSceneStart = function() {
     _SceneManager_onSceneStart.call(this);
 
-    // wait until $gameVariables exists before allowing manual Firebase uploads
+    
     const checkVariablesReady = setInterval(() => {
         if (typeof $gameVariables !== 'undefined' && $gameVariables !== null) {
-            clearInterval(checkVariablesReady); // stop checking
+            clearInterval(checkVariablesReady);
         } else {
-
+            // leave empty
         }
-    }, 5000); // check faster (every second instead of 3 sec)
+    }, 5000);
 };
 
 
