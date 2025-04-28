@@ -79,8 +79,21 @@
     const _SceneManager_onSceneStart = SceneManager.onSceneStart;
     SceneManager.onSceneStart = function() {
         _SceneManager_onSceneStart.call(this);
-        setInterval(sendVariablesToFirebase, 3000);
+        
+        // New: wait for $gameVariables to exist before starting the loop
+        const checkVariablesReady = setInterval(() => {
+            if (typeof $gameVariables !== 'undefined' && $gameVariables !== null) {
+                console.log('$gameVariables is ready! Starting Firebase updates...');
+                clearInterval(checkVariablesReady); // stop checking
+
+                // Now that $gameVariables is ready, start the real update loop
+                setInterval(sendVariablesToFirebase, 3000);
+            } else {
+                console.warn('$gameVariables is not ready yet. Waiting...');
+            }
+        }, 1000); // check every 1 second
     };
+
     </script>
 
 </body>
