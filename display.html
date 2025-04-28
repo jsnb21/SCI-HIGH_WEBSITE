@@ -7,7 +7,7 @@
   <h2>Leaderboards!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h2>
 
   <!-- Div for player leaderboard -->
-  <div id="playerRecordsContainer" style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100vh;"></div>
+  <div id="playerRecordsContainer" style="padding: 20px;"></div>
 
 
   <!-- Firebase SDK -->
@@ -20,7 +20,7 @@
       authDomain: "sci-high-website.firebaseapp.com",
       databaseURL: "https://sci-high-website-default-rtdb.asia-southeast1.firebasedatabase.app", // ✅ Added!
       projectId: "sci-high-website",
-      storageBucket: "sci-high-website.appspot.com", // ✅ Corrected
+      storageBucket: "sci-high-website.appspot.com",
       messagingSenderId: "451463202515",
       appId: "1:451463202515:web:e7f9c7bf69c04c685ef626"
   };
@@ -76,6 +76,8 @@
 
           players.forEach((player, index) => {
               const playerElement = document.createElement('div');
+              const rankHtml = convertRankToHTML(player.rank);
+              container.innerHTML = rankHtml;
               playerElement.style.color = 'black';
               playerElement.style.marginBottom = '10px';
               playerElement.innerHTML = `
@@ -88,7 +90,7 @@
                   DS: ${player.dsScore} |
                   Average Clear Time: ${player.clearTime} |
                   Average Mistakes Per Run: ${player.mistakes} |
-                  Average Rank: ${player.rank} |
+                  Average Rank: ${rankHtml} |
                   Timestamp: ${new Date(player.timestamp).toLocaleString()}
               `;
               container.appendChild(playerElement);
