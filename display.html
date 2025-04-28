@@ -73,9 +73,14 @@
           }
 
           // Clear the container before appending new content
-          container.innerHTML = ''; 
-          // Create a single wrapper div for all player records
+          container.innerHTML = '';
+
+          // Create a SINGLE wrapper div for all player elements
           const wrapper = document.createElement('div');
+          wrapper.style.display = 'flex';
+          wrapper.style.flexDirection = 'column';
+          wrapper.style.alignItems = 'center';
+          wrapper.style.width = '100%';
 
           players.forEach((player, index) => {
               const playerElement = document.createElement('div');
