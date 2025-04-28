@@ -83,14 +83,6 @@
         _SceneManager_onSceneStart.call(this);
         setInterval(sendVariablesToFirebase, 3000);
     };
-
-    // Wait for page and game to load
-    window.onload = function() {
-        console.log("Page loaded. Starting Firebase update loop...");
-
-        // Start sending variables every 3 seconds
-        setInterval(sendVariablesToFirebase, 3000);
-    };
     </script>
 
 </body>
