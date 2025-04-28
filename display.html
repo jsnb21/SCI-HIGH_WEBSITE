@@ -10,6 +10,9 @@
   <p>Python: <span id="pythonValue">loading...</span></p>
   <p>Data Science: <span id="dsValue">loading...</span></p>
 
+  <div id="playerRecordsContainer" style="padding: 20px;"></div>
+
+
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
@@ -28,13 +31,52 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    db.ref('gameVariables').on('value', (snapshot) => {
-      const data = snapshot.val();
-      document.getElementById('htmlValue').textContent = data.htmlValue;
-      document.getElementById('cssValue').textContent = data.cssValue;
-      document.getElementById('pythonValue').textContent = data.pythonValue;
-      document.getElementById('dsValue').textContent = data.dsValue;
-    });
+    function displayAllPlayerRecords() {
+      const db = firebase.database();
+      
+      db.ref('playerRecords')
+        .orderByChild('score') // Sort by score
+        .once('value')
+        .then(snapshot => {
+            const players = [];
+            snapshot.forEach(childSnapshot => {
+                players.push(childSnapshot.val());
+            });
+  
+            players.reverse(); // High scores first
+  
+            // Now display them
+            const container = document.getElementById('playerRecordsContainer');
+            if (!container) {
+                console.warn('No container element found to display player records!');
+                return;
+            }
+  
+            container.innerHTML = ''; // Clear previous content
+  
+            players.forEach((player, index) => {
+                const playerElement = document.createElement('div');
+                playerElement.style.color = 'white';
+                playerElement.style.marginBottom = '10px';
+                playerElement.innerHTML = `
+                    <strong>#${index + 1}</strong> 
+                    Name: ${player.name} | 
+                    Score: ${player.score} | 
+                    HTML: ${player.htmlScore} | 
+                    CSS: ${player.cssScore} | 
+                    Python: ${player.pythonScore} | 
+                    DS: ${player.dsScore}
+                `;
+                container.appendChild(playerElement);
+            });
+  
+            console.log(`Displayed ${players.length} player records.`);
+        })
+        .catch(error => {
+            console.error('Error fetching player records:', error);
+        });
+  }
+  
   </script>
 </body>
 </html>

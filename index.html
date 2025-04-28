@@ -87,24 +87,22 @@ function sendVariablesToFirebase() {
 }
 
     
-    // wait for the game scene to start
-    const _SceneManager_onSceneStart = SceneManager.onSceneStart;
-    SceneManager.onSceneStart = function() {
-        _SceneManager_onSceneStart.call(this);
-        
-        // wait for $gameVariables to exist before starting the loop
-        const checkVariablesReady = setInterval(() => {
-            console.log('$gameVariables is ready! Starting Firebase updates...');
-            if (typeof $gameVariables !== 'undefined' && $gameVariables !== null) {
-                clearInterval(checkVariablesReady); // stop checking
+// wait for the game scene to start
+const _SceneManager_onSceneStart = SceneManager.onSceneStart;
+SceneManager.onSceneStart = function() {
+    _SceneManager_onSceneStart.call(this);
 
-            
-                setInterval(sendVariablesToFirebase, 3000);
-            } else {
-                console.warn('$gameVariables is not ready yet. Waiting...');
-            }
-        }, 3000);
-    };
+    // wait until $gameVariables exists before allowing manual Firebase uploads
+    const checkVariablesReady = setInterval(() => {
+        if (typeof $gameVariables !== 'undefined' && $gameVariables !== null) {
+            clearInterval(checkVariablesReady); // stop checking
+            console.log('$gameVariables is ready! You can now manually send data to Firebase.');
+        } else {
+            console.warn('$gameVariables is not ready yet. Waiting...');
+        }
+    }, 1000); // check faster (every second instead of 3 sec)
+};
+
 
     </script>
 
