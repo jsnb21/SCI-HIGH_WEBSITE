@@ -1,81 +1,95 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="viewport" content="user-scalable=no">
-        <link rel="icon" href="icon/icon.png" type="image/png">
-        <link rel="apple-touch-icon" href="icon/icon.png">
-        <link rel="stylesheet" type="text/css" href="fonts/gamefont.css">
-        <title>SCI-HIGH</title>
-    </head>
-    <body style="background-color: black">
-        <script type="text/javascript" src="js/libs/pixi.js"></script>
-        <script type="text/javascript" src="js/libs/pixi-tilemap.js"></script>
-        <script type="text/javascript" src="js/libs/pixi-picture.js"></script>
-        <script type="text/javascript" src="js/libs/fpsmeter.js"></script>
-        <script type="text/javascript" src="js/libs/lz-string.js"></script>
-        <script type="text/javascript" src="js/libs/iphone-inline-video.browser.js"></script>
-        <script type="text/javascript" src="js/rpg_core.js"></script>
-        <script type="text/javascript" src="js/rpg_managers.js"></script>
-        <script type="text/javascript" src="js/rpg_objects.js"></script>
-        <script type="text/javascript" src="js/rpg_scenes.js"></script>
-        <script type="text/javascript" src="js/rpg_sprites.js"></script>
-        <script type="text/javascript" src="js/rpg_windows.js"></script>
-        <script type="text/javascript" src="js/plugins.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>SCI-HIGH</title>
+    <link rel="icon" href="icon/icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="icon/icon.png">
+    <link rel="stylesheet" type="text/css" href="fonts/gamefont.css">
+</head>
+<body style="background-color: black;">
 
-        <!-- Firebase SDK -->
-        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-        <script type="module">
-          
-            
-            // Your web app's Firebase configuration
-            const firebaseConfig = {
-                apiKey: "AIzaSyD-Q2woACHgMCTVwd6aX-IUzLovE0ux-28",
-                authDomain: "sci-high-website.firebaseapp.com",
-                databaseURL: "https://sci-high-website-default-rtdb.asia-southeast1.firebasedatabase.app", // ✅ Added!
-                projectId: "sci-high-website",
-                storageBucket: "sci-high-website.appspot.com", // ✅ Corrected
-                messagingSenderId: "451463202515",
-                appId: "1:451463202515:web:e7f9c7bf69c04c685ef626"
-            };
-            
-            
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
+    <!-- Game Canvas / Content will be added here -->
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <!-- Game Scripts -->
+    <script src="js/libs/pixi.js"></script>
+    <script src="js/libs/pixi-tilemap.js"></script>
+    <script src="js/libs/pixi-picture.js"></script>
+    <script src="js/libs/fpsmeter.js"></script>
+    <script src="js/libs/lz-string.js"></script>
+    <script src="js/libs/iphone-inline-video.browser.js"></script>
+    <script src="js/rpg_core.js"></script>
+    <script src="js/rpg_managers.js"></script>
+    <script src="js/rpg_objects.js"></script>
+    <script src="js/rpg_scenes.js"></script>
+    <script src="js/rpg_sprites.js"></script>
+    <script src="js/rpg_windows.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyD-Q2woACHgMCTVwd6aX-IUzLovE0ux-28",
+        authDomain: "sci-high-website.firebaseapp.com",
+        databaseURL: "https://sci-high-website-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "sci-high-website",
+        storageBucket: "sci-high-website.appspot.com",
+        messagingSenderId: "451463202515",
+        appId: "1:451463202515:web:e7f9c7bf69c04c685ef626"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Print when connected
+    firebase.database().ref(".info/connected").on("value", (snapshot) => {
+        if (snapshot.val() === true) {
+            console.log("✅ Connected to Firebase Database!");
+        } else {
+            console.log("❌ Disconnected from Firebase Database.");
+        }
+    });
     
-            // Send RPG Maker game variables to Firebase
-            function sendVariablesToFirebase() {
-                const db = firebase.database();
-    
-                    // Update the webpage with these values
-                    document.getElementById('htmlValue').textContent = htmlValue;
-                    document.getElementById('cssValue').textContent = cssValue;
-                    document.getElementById('pythonValue').textContent = pythonValue;
-                    document.getElementById('dsValue').textContent = dsValue;
-                }
+    // Send Game Variables
+    function sendVariablesToFirebase() {
+        if (typeof $gameVariables !== "undefined" && $gameVariables !== null) {
+            try {
                 const htmlValue = $gameVariables.value(22);
                 const cssValue = $gameVariables.value(23);
                 const pythonValue = $gameVariables.value(24);
                 const dsValue = $gameVariables.value(25);
     
-                // Run the function after the game is initialized (using a timeout to wait for the game to load)
-                window.onload = function() {
-                    // Wait a bit to ensure the game is initialized before accessing the game variables
-                    setTimeout(updateGameVariables, 2000);  // Adjust delay as necessary
-                };
-                db.ref('gameVariables').set({
-                htmlValue,
-                cssValue,
-                pythonValue,
-                dsValue
+                firebase.database().ref('gameVariables').set({
+                    htmlValue,
+                    cssValue,
+                    pythonValue,
+                    dsValue
                 });
     
-            // Example: call this when player answers correctly or at intervals
-            setInterval(sendVariablesToFirebase, 3000); // every 3 seconds
-            </script>
-    </body>
+                console.log("Sent variables to Firebase:", { htmlValue, cssValue, pythonValue, dsValue });
+            } catch (error) {
+                console.error("Error sending variables:", error);
+            }
+        } else {
+            console.warn("$gameVariables not ready yet.");
+        }
+    }
+    
+
+    // Wait for page and game to load
+    window.onload = function() {
+        console.log("Page loaded. Starting Firebase update loop...");
+
+        // Start sending variables every 3 seconds
+        setInterval(sendVariablesToFirebase, 3000);
+    };
+    </script>
+
+</body>
 </html>
