@@ -136,3 +136,29 @@ function displayAverage() {
     );
 }
 
+function uploadAllSaveRuns() {
+    const db = firebase.database();
+    const saveRunsData = localStorage.getItem('SaveRuns');
+
+    if (saveRunsData) {
+        const runs = JSON.parse(saveRunsData);
+
+        runs.forEach(run => {
+            const totalScore = (run.html || 0) + (run.css || 0) + (run.python || 0); // Add safely
+
+            const newRecordRef = db.ref('playerRecords').push();
+            newRecordRef.set({
+                name: run.playerName || "Unknown",
+                score: totalScore,
+                htmlScore: run.html || 0,
+                cssScore: run.css || 0,
+                pythonScore: run.python || 0,
+                timestamp: Date.now()
+            });
+        });
+
+        console.log(`Uploaded ${runs.length} runs to Firebase!`);
+    } else {
+        console.warn('No SaveRuns data found in localStorage.');
+    }
+}

@@ -48,50 +48,62 @@
     // Print when connected
     firebase.database().ref(".info/connected").on("value", (snapshot) => {
         if (snapshot.val() === true) {
-            console.log("✅ Connected to Firebase Database!");
+            console.log("Connected to Firebase Database!");
         } else {
-            console.log("❌ Disconnected from Firebase Database.");
+
         }
     });
     
-    // Send Game Variables
-    function sendVariablesToFirebase() {
-        if (typeof $gameVariables !== 'undefined' && $gameVariables !== null) {
-            const db = firebase.database();
-    
-            const htmlValue = $gameVariables.value(22);
-            const cssValue = $gameVariables.value(23);
-            const pythonValue = $gameVariables.value(24);
-            const dsValue = $gameVariables.value(25);
-    
-            db.ref('gameVariables').set({
-                htmlValue,
-                cssValue,
-                pythonValue,
-                dsValue
-            });
-        } else {
-            console.warn('$gameVariables is not ready yet.');
-        }
+// Send Game Variables
+function sendVariablesToFirebase() {
+    if (typeof $gameVariables !== 'undefined' && $gameVariables !== null) {
+        const db = firebase.database();
+
+        const htmlValue = $gameVariables.value(22) || 0;
+        const cssValue = $gameVariables.value(23) || 0;
+        const pythonValue = $gameVariables.value(24) || 0;
+        const dsValue = $gameVariables.value(25) || 0;
+
+        const totalScore = htmlValue + cssValue + pythonValue + dsValue;
+
+        const playerName = $gameVariables.value(26) || "Unknown"; 
+        // (Assuming you save the player name in Variable 26. Adjust if needed!)
+
+        const newRecordRef = db.ref('playerRecords').push();
+        newRecordRef.set({
+            name: playerName,
+            score: totalScore,
+            htmlScore: htmlValue,
+            cssScore: cssValue,
+            pythonScore: pythonValue,
+            dsScore: dsValue,
+            timestamp: Date.now()
+        });
+
+        console.log('Player record sent to Firebase:', playerName, totalScore);
+    } else {
+        console.warn('$gameVariables is not ready yet.');
     }
+}
+
     
-    // Instead of starting immediately, wait for the game scene to start
+    // wait for the game scene to start
     const _SceneManager_onSceneStart = SceneManager.onSceneStart;
     SceneManager.onSceneStart = function() {
         _SceneManager_onSceneStart.call(this);
         
-        // New: wait for $gameVariables to exist before starting the loop
+        // wait for $gameVariables to exist before starting the loop
         const checkVariablesReady = setInterval(() => {
+            console.log('$gameVariables is ready! Starting Firebase updates...');
             if (typeof $gameVariables !== 'undefined' && $gameVariables !== null) {
-                console.log('$gameVariables is ready! Starting Firebase updates...');
                 clearInterval(checkVariablesReady); // stop checking
 
-                // Now that $gameVariables is ready, start the real update loop
+            
                 setInterval(sendVariablesToFirebase, 3000);
             } else {
                 console.warn('$gameVariables is not ready yet. Waiting...');
             }
-        }, 1000); // check every 1 second
+        }, 3000);
     };
 
     </script>
