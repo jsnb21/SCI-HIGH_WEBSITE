@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Game Stats</title>
+  <title>Sky High Leaderboards</title>
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h2 style="padding: 20px; display: flex; justify-content: center; align-items: center;">Leaderboards!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h2>
-  <!-- Div for player leaderboard -->
-  <div id="playerRecordsContainer" style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100vh;">
+<body class="bg-gray-100">
+  <div class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="bg-white shadow-md rounded-lg p-6 max-w-lg w-full">
+      <h2 class="text-2xl font-bold mb-4 text-center">Sky High Leaderboards</h2>
+      <p class="text-gray-700 mb-4">Check out the latest scores and ranks!</p>
+      <div id="playerRecordsContainer" class="overflow-x-auto"></div>
+    </div>
   </div>
+
+  <!-- Heading -->
+  <h2 class="text-4xl font-extrabold text-center py-8 text-indigo-600">
+    Leaderboards
+  </h2>
+  <!-- Div for player leaderboard -->
+  <div id="playerRecordsContainer" class="flex justify-center p-6"></div>
 
 
   <!-- Firebase SDK -->
@@ -74,68 +86,71 @@ function displayAllPlayerRecords() {
 
         container.innerHTML = '';
 
-        // Create the table and header
+        // Create Tailwind-styled table
         const table = document.createElement('table');
-        table.style.borderCollapse = 'collapse';
-        table.style.width = '90%';
-        table.style.textAlign = 'center';
+        table.className = 'min-w-full bg-white shadow-md rounded-lg overflow-hidden';
 
         // Create header row
+        const thead = document.createElement('thead');
+        thead.className = 'bg-gray-200';
         const headerRow = document.createElement('tr');
         const headers = [
             'No. ', 'Name', 'Score', 'HTML', 'CSS', 'Python', 'DS', 
             'Clear Time', 'Mistakes', 'Rank', 'Timestamp', 'Badges'
         ];
+
         headers.forEach(headerText => {
             const th = document.createElement('th');
             th.textContent = headerText;
-            th.style.border = '1px solid black';
-            th.style.padding = '8px';
-            th.style.backgroundColor = '#f2f2f2';
+            th.className = 'py-3 px-6 text-xs font-bold uppercase tracking-wider text-gray-600 text-center border-b';
             headerRow.appendChild(th);
-        });
-        table.appendChild(headerRow);
+          });
+          thead.appendChild(headerRow);
+          table.appendChild(thead);
 
-        // Create one row per player
-        players.forEach((player, index) => {
+          // Create table body
+          const tbody = document.createElement('tbody');
+
+          players.forEach((player, index) => {
             const row = document.createElement('tr');
+            row.className = 'hover:bg-gray-100';
 
             const rankHtml = convertRankToHTML(player.rank);
 
             const rowData = [
-                `No. ${index + 1}`,
-                player.name,
-                player.score,
-                player.htmlScore,
-                player.cssScore,
-                player.pythonScore,
-                player.dsScore,
-                player.clearTime,
-                player.mistakes,
-                rankHtml,
-                new Date(player.timestamp).toLocaleDateString(),
-                'Badges here' // Placeholder
+              `No. ${index + 1}`,
+              player.name,
+              player.score,
+              player.htmlScore,
+              player.cssScore,
+              player.pythonScore,
+              player.dsScore,
+              player.clearTime,
+              player.mistakes,
+              rankHtml,
+              new Date(player.timestamp).toLocaleDateString(),
+              'Badges here'
             ];
 
             rowData.forEach(data => {
-                const td = document.createElement('td');
-                td.style.border = '1px solid black';
-                td.style.padding = '8px';
-                td.innerHTML = data; // use innerHTML to allow colored rank
-                row.appendChild(td);
+              const td = document.createElement('td');
+              td.className = 'py-4 px-6 text-sm text-gray-700 text-center border-b';
+              td.innerHTML = data;
+              row.appendChild(td);
             });
 
-            table.appendChild(row);
+            tbody.appendChild(row);
+          });
+
+          table.appendChild(tbody);
+          container.appendChild(table);
+
+          console.log(`Displayed ${players.length} player records.`);
+        })
+        .catch(error => {
+          console.error('Error fetching player records:', error);
         });
-
-        container.appendChild(table);
-
-        console.log(`Displayed ${players.length} player records.`);
-    })
-    .catch(error => {
-        console.error('Error fetching player records:', error);
-    });
-}
+    }
 
 
 window.addEventListener('load', function() {
