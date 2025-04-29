@@ -5,6 +5,10 @@
   <!-- TailwindCSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<script>// Enable dark mode in Tailwind
+  tailwind.config = {
+    darkMode: 'class',
+  };</script>
 <body class="bg-gray-100">
   <div class="flex items-center justify-center h-screen bg-gray-100">
     <div class="bg-white shadow-md rounded-lg p-6 max-w-7xl w-full border border-gray-300">
@@ -159,10 +163,6 @@ window.addEventListener('load', function() {
     setInterval(displayAllPlayerRecords, 1000); // Reload every 2 seconds
 });
 
-// Enable dark mode in Tailwind
-tailwind.config = {
-  darkMode: 'class',
-};
   </script>
 </body>
 </html>
