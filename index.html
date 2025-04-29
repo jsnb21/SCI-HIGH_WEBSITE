@@ -6,11 +6,20 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>SCI-HIGH</title>
+
     <link rel="icon" href="icon/icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon/icon.png">
     <link rel="stylesheet" type="text/css" href="fonts/gamefont.css">
+
+    /* For External CSS */
+    <link rel="stylesheet" href="style.css">
+
 </head>
-<body style="background-color: black;">
+<body>
+
+    <nav>
+        <a href="leaderboards.html">Leaderboards</a>
+    </nav>
 
     <!-- Game Scripts -->
     <script src="js/libs/pixi.js"></script>
@@ -79,7 +88,7 @@ function sendVariablesToFirebase() {
                 const totalScore = htmlValue + cssValue + pythonValue + dsValue;
                 const playerId = getOrCreatePlayerId();
                 const playerName = $gameParty.leader().name() || "Unknown";
-                const recordRef = db.ref('playerRecords/' + playerID);
+                const recordRef = db.ref('playerRecords/' + playerId);
 
                 recordRef.set({
                     name: playerName,
