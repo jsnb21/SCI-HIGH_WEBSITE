@@ -138,9 +138,17 @@ function displayAverage() {
 
 // Function to get or create a unique player ID for database
 function getOrCreatePlayerId() {
-    if (!$gameSystem._playerId) {
-        $gameSystem._playerId = 'player_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
-    }
+    const _SceneManager_onSceneStart = SceneManager.onSceneStart;
+    SceneManager.onSceneStart = function() {
+        _SceneManager_onSceneStart.call(this);
+    
+        if (!$gameSystem._playerId) {
+            $gameSystem._playerId = 'player_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
+            console.log('Generated new Player ID:', $gameSystem._playerId);
+        } else {
+            console.log('Loaded existing Player ID:', $gameSystem._playerId);
+        }
+    };
     return $gameSystem._playerId;
 }
 

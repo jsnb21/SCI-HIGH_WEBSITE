@@ -86,10 +86,15 @@ function sendVariablesToFirebase() {
                 const pythonValue = Math.min($gameVariables.value(24) || 0, 100);
                 const dsValue = Math.min($gameVariables.value(25) || 0, 100);
                 const totalScore = htmlValue + cssValue + pythonValue + dsValue; // Calculate total score
-                const playerId = getOrCreatePlayerId();
                 const playerName = $gameParty.leader().name() || "Unknown";
-                const recordRef = db.ref('playerRecords/' + playerId);
-
+                if ($gameSystem && $gameSystem._playerId) {
+                    const playerId = getOrCreatePlayerId();
+                    const recordRef = db.ref('playerRecords/' + playerId);
+                    // continue as normal
+                } else {
+                    console.warn('Player ID not ready. Wait until game is fully loaded.');
+                }
+                
                 recordRef.set({
                     name: playerName,
                     score: totalScore,
@@ -100,7 +105,6 @@ function sendVariablesToFirebase() {
                     clearTime: run.clearTime || 0,
                     mistakes: run.mistakes || 0,
                     rank: run.rank || "None",
-                    timestamp: Date.now()
                 });
 
                 console.log(`Uploaded run to ID ${nextId}`);

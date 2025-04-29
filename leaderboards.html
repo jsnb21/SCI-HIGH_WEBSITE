@@ -130,10 +130,9 @@ function displayAllPlayerRecords() {
               `${player.cssScore}%`,
               `${player.pythonScore}%`,
               `${player.dsScore}%`,
-              player.clearTime,
+              `${Math.floor(player.clearTime / 60)}m: ${player.clearTime % 60}s`, // Convert seconds to minutes
               player.mistakes,
               rankHtml,
-              new Date(player.timestamp).toLocaleDateString(),
               'Badges here'
             ];
 
