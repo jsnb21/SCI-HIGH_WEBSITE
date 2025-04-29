@@ -101,7 +101,7 @@ function displayAllPlayerRecords() {
         const headerRow = document.createElement('tr');
         const headers = [
             'No. ', 'Name', 'Score', 'HTML', 'CSS', 'Python', 'DS', 
-            'Clear Time', 'Mistakes', 'Rank', 'Timestamp', 'Badges'
+            'Clear Time', 'Mistakes', 'Rank', 'Badges'
         ];
 
         headers.forEach(headerText => {
@@ -130,7 +130,7 @@ function displayAllPlayerRecords() {
               `${player.cssScore}%`,
               `${player.pythonScore}%`,
               `${player.dsScore}%`,
-              `${Math.floor(player.clearTime / 60)}m: ${player.clearTime % 60}s`, // Convert seconds to minutes
+              `${Math.floor(player.clearTime / 60)}m ${player.clearTime % 60}s`, // Convert seconds to minutes
               player.mistakes,
               rankHtml,
               'Badges here'
