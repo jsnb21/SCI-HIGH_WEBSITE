@@ -99,10 +99,11 @@
                   Average Mistakes Per Run: ${player.mistakes} |
                   Average Rank: ${rankHtml} |
                   Timestamp: ${new Date(player.timestamp).toLocaleString()}
+                  Badges: 
               `;
-              container.appendChild(playerElement);
+              wrapper.appendChild(playerElement); // ✅ append to wrapper
           });
-
+          container.appendChild(wrapper); // ✅ append wrapper once
           console.log(`Displayed ${players.length} player records.`);
       })
       .catch(error => {
