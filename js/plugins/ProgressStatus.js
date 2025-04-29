@@ -115,7 +115,22 @@
             this.changePaintOpacity(true);
         }
 
+        // Calculate Y position below the last gauge (DS & Algorithms)
+        let badgeStartY = startY + (lineHeight * 4) + 40; // 4 lines * spacing + extra padding
+        let badgeX = startX;
 
+        let badges = [
+            { switchId: 42, faceIndex: 0 },
+            { switchId: 43, faceIndex: 1 },
+            { switchId: 44, faceIndex: 2 },
+        ];
+
+        badges.forEach(badge => {
+            if ($gameSwitches.value(badge.switchId)) {
+                this.drawFace("COURSE_BADGES", badge.faceIndex, badgeX, badgeStartY, 144, 144);
+                badgeX += 150; // Move right for the next badge
+            }
+        });
     };
 
 })();
