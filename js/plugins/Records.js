@@ -135,3 +135,14 @@ function displayAverage() {
         "\n\\C[16]Average Rank\\C[0]: " + avgRank
     );
 }
+
+// Function to get or create a unique player ID for database
+function getOrCreatePlayerId() {
+    let playerId = localStorage.getItem('PlayerID');
+    if (!playerId) {
+        playerId = 'player_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
+        localStorage.setItem('PlayerID', playerId);
+    }
+    return playerId;
+}
+

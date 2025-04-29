@@ -77,10 +77,9 @@ function sendVariablesToFirebase() {
                 const pythonValue = run.python || 0;
                 const dsValue = run.ds || 0;
                 const totalScore = htmlValue + cssValue + pythonValue + dsValue;
-
+                const playerId = getOrCreatePlayerId();
                 const playerName = $gameParty.leader().name() || "Unknown";
-
-                const recordRef = db.ref('playerRecords/' + nextId);
+                const recordRef = db.ref('playerRecords/' + playerID);
 
                 recordRef.set({
                     name: playerName,

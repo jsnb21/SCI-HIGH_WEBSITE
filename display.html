@@ -4,9 +4,9 @@
   <title>Game Stats</title>
 </head>
 <body>
+  <h2 style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100vh;">Leaderboards!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h2>
   <!-- Div for player leaderboard -->
   <div id="playerRecordsContainer" style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <h2>Leaderboards!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h2>
   </div>
 
 
@@ -31,8 +31,8 @@
     function convertRankToHTML(rankString) {
       // Mapping of RPGMaker color indexes to hex codes
       const colorMap = {
-          16: "#FFD700", // Gold color for A Rank
-          17: "#00FFFF", // Cyan color for S Rank
+          16: "#00FFFF", // Cyan color for A Rank
+          17: "#FFD700", // Gold color for S Rank
           18: "#FF4500", // Orange color for B Rank
           0: "#FFFFFF"   // Default white color
       };
@@ -83,7 +83,7 @@ function displayAllPlayerRecords() {
         // Create header row
         const headerRow = document.createElement('tr');
         const headers = [
-            '#', 'Name', 'Score', 'HTML', 'CSS', 'Python', 'DS', 
+            'No. ', 'Name', 'Score', 'HTML', 'CSS', 'Python', 'DS', 
             'Clear Time', 'Mistakes', 'Rank', 'Timestamp', 'Badges'
         ];
         headers.forEach(headerText => {
@@ -103,7 +103,7 @@ function displayAllPlayerRecords() {
             const rankHtml = convertRankToHTML(player.rank);
 
             const rowData = [
-                `#${index + 1}`,
+                `No. ${index + 1}`,
                 player.name,
                 player.score,
                 player.htmlScore,
@@ -113,7 +113,7 @@ function displayAllPlayerRecords() {
                 player.clearTime,
                 player.mistakes,
                 rankHtml,
-                new Date(player.timestamp).toLocaleString(),
+                new Date(player.timestamp).toLocaleDateString(),
                 'Badges here' // Placeholder
             ];
 
