@@ -7,7 +7,7 @@
 </head>
 <body class="bg-gray-100">
   <div class="flex items-center justify-center h-screen bg-gray-100">
-    <div class="bg-white shadow-md rounded-lg p-6 max-w-8xl w-full border border-gray-300">
+    <div class="bg-white shadow-md rounded-lg p-6 max-w-7xl w-full border border-gray-300">
       <h2 class="text-2xl font-bold mb-4 text-center">Sky High Leaderboards</h2>
       <p class="text-gray-700 mb-4">Check out the latest scores and ranks!</p>
       <div id="playerRecordsContainer" class="overflow-x-auto"></div>
@@ -117,10 +117,10 @@ function displayAllPlayerRecords() {
               `No. ${index + 1}`,
               player.name,
               player.score,
-              player.htmlScore,
-              player.cssScore,
-              player.pythonScore,
-              player.dsScore,
+              `${player.htmlScore}%`,
+              `${player.cssScore}%`,
+              `${player.pythonScore}%`,
+              `${player.dsScore}%`,
               player.clearTime,
               player.mistakes,
               rankHtml,
