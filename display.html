@@ -4,10 +4,10 @@
   <title>Game Stats</title>
 </head>
 <body>
-  <h2>Leaderboards!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h2>
-
   <!-- Div for player leaderboard -->
-  <div id="playerRecordsContainer" style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100vh;"></div>
+  <div id="playerRecordsContainer" style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <h2>Leaderboards!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h2>
+  </div>
 
 
   <!-- Firebase SDK -->
@@ -51,69 +51,96 @@
           return rankString; // If no color code, return as is
       }
   }
-  // / Function to display all player records from Firebase
-  function displayAllPlayerRecords() {
-    const db = firebase.database();
-    
-    db.ref('playerRecords')
-      .orderByChild('score') // Order by score
-      .once('value') 
-      .then(snapshot => {
-          const players = [];
-          snapshot.forEach(childSnapshot => {
-              players.push(childSnapshot.val());
-          });
+// / Function to display all player records from Firebase
+function displayAllPlayerRecords() {
+  const db = firebase.database();
 
-          players.reverse(); // High scores first
+  db.ref('playerRecords')
+    .orderByChild('score')
+    .once('value')
+    .then(snapshot => {
+        const players = [];
+        snapshot.forEach(childSnapshot => {
+            players.push(childSnapshot.val());
+        });
 
-          const container = document.getElementById('playerRecordsContainer');
-          if (!container) {
-              console.warn('No container element found to display player records!');
-              return;
-          }
+        players.reverse(); // High scores first
 
-          // Clear the container before appending new content
-          container.innerHTML = '';
+        const container = document.getElementById('playerRecordsContainer');
+        if (!container) {
+            console.warn('No container element found to display player records!');
+            return;
+        }
 
-          // Create a SINGLE wrapper div for all player elements
-          const wrapper = document.createElement('div');
-          wrapper.style.display = 'flex';
-          wrapper.style.flexDirection = 'column';
-          wrapper.style.alignItems = 'center';
-          wrapper.style.width = '100%';
+        container.innerHTML = '';
 
-          players.forEach((player, index) => {
-              const playerElement = document.createElement('div');
-              const rankHtml = convertRankToHTML(player.rank);
-              playerElement.style.color = 'black';
-              playerElement.style.marginBottom = '10px';
-              playerElement.innerHTML = `
-                  <strong>#${index + 1}</strong> 
-                  Name: ${player.name} | 
-                  Score: ${player.score} | 
-                  HTML: ${player.htmlScore} | 
-                  CSS: ${player.cssScore} | 
-                  Python: ${player.pythonScore} | 
-                  DS: ${player.dsScore} |
-                  Average Clear Time: ${player.clearTime} |
-                  Average Mistakes Per Run: ${player.mistakes} |
-                  Average Rank: ${rankHtml} |
-                  Timestamp: ${new Date(player.timestamp).toLocaleString()}
-                  Badges: 
-              `;
-              wrapper.appendChild(playerElement); // ✅ append to wrapper
-          });
-          container.appendChild(wrapper); // ✅ append wrapper once
-          console.log(`Displayed ${players.length} player records.`);
-      })
-      .catch(error => {
-          console.error('Error fetching player records:', error);
-      });
+        // Create the table and header
+        const table = document.createElement('table');
+        table.style.borderCollapse = 'collapse';
+        table.style.width = '90%';
+        table.style.textAlign = 'center';
+
+        // Create header row
+        const headerRow = document.createElement('tr');
+        const headers = [
+            '#', 'Name', 'Score', 'HTML', 'CSS', 'Python', 'DS', 
+            'Clear Time', 'Mistakes', 'Rank', 'Timestamp', 'Badges'
+        ];
+        headers.forEach(headerText => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            th.style.border = '1px solid black';
+            th.style.padding = '8px';
+            th.style.backgroundColor = '#f2f2f2';
+            headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow);
+
+        // Create one row per player
+        players.forEach((player, index) => {
+            const row = document.createElement('tr');
+
+            const rankHtml = convertRankToHTML(player.rank);
+
+            const rowData = [
+                `#${index + 1}`,
+                player.name,
+                player.score,
+                player.htmlScore,
+                player.cssScore,
+                player.pythonScore,
+                player.dsScore,
+                player.clearTime,
+                player.mistakes,
+                rankHtml,
+                new Date(player.timestamp).toLocaleString(),
+                'Badges here' // Placeholder
+            ];
+
+            rowData.forEach(data => {
+                const td = document.createElement('td');
+                td.style.border = '1px solid black';
+                td.style.padding = '8px';
+                td.innerHTML = data; // use innerHTML to allow colored rank
+                row.appendChild(td);
+            });
+
+            table.appendChild(row);
+        });
+
+        container.appendChild(table);
+
+        console.log(`Displayed ${players.length} player records.`);
+    })
+    .catch(error => {
+        console.error('Error fetching player records:', error);
+    });
 }
+
 
 window.addEventListener('load', function() {
     displayAllPlayerRecords();
-    setInterval(displayAllPlayerRecords, 2000); // Reload every 2 seconds
+    setInterval(displayAllPlayerRecords, 1000); // Reload every 2 seconds
 });
 
   
