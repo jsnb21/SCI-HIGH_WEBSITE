@@ -81,10 +81,10 @@ function sendVariablesToFirebase() {
             let nextId = counterSnapshot.snapshot.val();
 
             runs.forEach(run => {
-                const htmlValue = $gameVariables.value(22) || 0;
-                const cssValue = $gameVariables.value(23) || 0;
-                const pythonValue = $gameVariables.value(24) || 0;
-                const dsValue = $gameVariables.value(25) || 0;
+                const htmlValue = Math.min($gameVariables.value(22) || 0, 100);
+                const cssValue = Math.min($gameVariables.value(23) || 0, 100);
+                const pythonValue = Math.min($gameVariables.value(24) || 0, 100);
+                const dsValue = Math.min($gameVariables.value(25) || 0, 100);
                 const totalScore = htmlValue + cssValue + pythonValue + dsValue; // Calculate total score
                 const playerId = getOrCreatePlayerId();
                 const playerName = $gameParty.leader().name() || "Unknown";
