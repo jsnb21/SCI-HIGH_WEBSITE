@@ -133,7 +133,14 @@ function displayAllPlayerRecords() {
               `${Math.floor(player.clearTime / 60)}m ${player.clearTime % 60}s`, // Convert seconds to minutes
               player.mistakes,
               rankHtml,
-              'Badges here'
+              `
+                <div class="flex justify-center space-x-2">
+                  ${player.htmlScore >= 100 ? '<span class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded">HTML</span>' : ''}
+                  ${player.cssScore >= 100 ? '<span class="px-2 py-1 text-xs font-semibold text-white bg-blue-500 rounded">CSS</span>' : ''}
+                  ${player.pythonScore >= 100 ? '<span class="px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">Python</span>' : ''}
+                  ${player.dsScore >= 100 ? '<span class="px-2 py-1 text-xs font-semibold text-white bg-purple-500 rounded">DS</span>' : ''}
+                </div>
+              `
             ];
 
             rowData.forEach(data => {
