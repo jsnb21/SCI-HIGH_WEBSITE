@@ -95,6 +95,7 @@ function sendVariablesToFirebase() {
         clearTime: run.clearTime || 0,
         mistakes: run.mistakes || 0,
         rank: run.rank || "None",
+        timeAddedIntoDB: Date.now(),
     };
 
     // ✅ Always overwrite this player's record
