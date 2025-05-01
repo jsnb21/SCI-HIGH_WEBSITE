@@ -29,17 +29,12 @@ body > canvas {
 }
 
 /* Nav Bar Styling */
-#navbar {
-    position: absolute;
-    top: 6%;
+nav {
+    position: fixed;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    
-    display: flex;
-    flex-wrap: wrap;               /* Allow wrapping on small screens */
-    justify-content: center;
-    align-items: center;
-    gap: 20px;                     /* Space between links */
+    z-index: 9999;
 
     background: rgba(0, 255, 255, 0.15);
     backdrop-filter: blur(10px);
@@ -47,15 +42,13 @@ body > canvas {
     border-radius: 20px;
     border: 1px solid rgba(0, 255, 255, 0.4);
     box-shadow: 0 8px 24px rgba(0, 255, 255, 0.4);
-    max-width: 95vw;              /* Prevents it from overflowing screen */
-    box-sizing: border-box;
 }
 
-/* Nav Links */
-#navbar a {
+/* Nav Link */
+nav a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 40px;
+    font-size: 20px;
     font-weight: bold;
     transition: color 0.2s ease;
     text-shadow: 
@@ -63,35 +56,8 @@ body > canvas {
          1px -1px 0 #000,  
         -1px  1px 0 #000,  
          1px  1px 0 #000;
-    margin: 0 8px;
-    white-space: nowrap;          /* Prevents link text from breaking */
 }
 
-/* Hover effect */
-#navbar a:hover {
+nav a:hover {
     color: #00ffff;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    #navbar a {
-        font-size: 28px;
-        margin: 0 6px;
-    }
-
-    #navbar {
-        padding: 12px 16px;
-        gap: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    #navbar {
-        flex-direction: column;   /* Stack links vertically */
-        gap: 10px;
-    }
-
-    #navbar a {
-        font-size: 24px;
-    }
 }
