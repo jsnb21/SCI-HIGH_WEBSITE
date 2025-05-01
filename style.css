@@ -14,68 +14,50 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    position: relative;
 }
 
 /* Game Canvas Styling */
-canvas {
+body > canvas {
     border-radius: 24px;
     border: 4px solid #00ffff;
     box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
-    z-index: 10;
+    margin-top: 100px; /* push canvas lower to make room for nav */
     display: block;
+    z-index: 10;
 }
 
 /* Nav Bar Styling */
 nav {
-    position: absolute;
-    top: 40px; /* increased from 20px */
+    position: fixed;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1001;
+    z-index: 9999;
+
     background: rgba(0, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    padding: 12px 24px;
+    padding: 16px 32px;
     border-radius: 20px;
     border: 1px solid rgba(0, 255, 255, 0.4);
-    box-shadow: 0 8px 16px rgba(0, 255, 255, 0.3); /* subtle drop shadow */
+    box-shadow: 0 8px 24px rgba(0, 255, 255, 0.4);
 }
 
+/* Nav Link */
 nav a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     transition: color 0.2s ease;
     text-shadow: 
         -1px -1px 0 #000,  
          1px -1px 0 #000,  
         -1px  1px 0 #000,  
-         1px  1px 0 #000;  /* Black outline for readability */
+         1px  1px 0 #000;
 }
 
 nav a:hover {
     color: #00ffff;
-}
-
-/* Optional Button Styling */
-button {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    z-index: 1001;
-    background: #00ffff;
-    color: #000;
-    border: none;
-    border-radius: 12px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-button:hover {
-    background: #00cccc;
 }
