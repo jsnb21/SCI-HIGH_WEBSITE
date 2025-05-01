@@ -4,27 +4,58 @@
   <title>Sky High Leaderboards</title>
   <!-- TailwindCSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
 </head>
-<script>// Enable dark mode in Tailwind
-  tailwind.config = {
-    darkMode: 'class',
-  };</script>
-<body class="bg-blue-50 dark:bg-gray-800">
-  <div class="flex items-center justify-center h-screen bg-blue-50 dark:bg-gray-800">
-    <div class="bg-white dark:bg-gray-700 shadow-md rounded-lg p-6 max-w-7xl w-full border border-gray-300 dark:border-gray-600">
-      <h2 class="text-2xl font-bold mb-4 text-center text-gray-800 dark:text-gray-200">Sky High Leaderboards</h2>
-      <p class="text-gray-700 dark:text-gray-300 mb-4">Check out the latest scores and ranks of the Sky High Game!</p>
-      <div id="playerRecordsContainer" class="overflow-x-auto"></div>
-      <div class="flex justify-center mt-4">
-        <button id="themeToggle" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 dark:bg-yellow-500 dark:text-gray-900 dark:hover:bg-yellow-600">
-          Toggle Dark Mode
-        </button>
-      </div>
-    </div>
+<body class="bg-gray-900 font-['Press_Start_2P']">
+  <!-- Neon Glass Nav Bar -->
+  <div class="absolute top-[18.5%] left-1/2 transform -translate-x-1/2 z-50 
+              flex flex-wrap justify-center items-center gap-4 
+              px-8 py-4 max-w-[95vw] 
+              border border-cyan-300 rounded-2xl 
+              backdrop-blur-md bg-cyan-300/15 
+              shadow-[0_8px_24px_rgba(0,255,255,0.4)]">
+    <a href="index.html" target="_blank"
+       class="text-white text-xl font-bold no-underline 
+              mx-2 whitespace-nowrap 
+              hover:text-cyan-300 transition-colors duration-200 
+              drop-shadow-[1px_1px_0_black]">
+      Home
+    </a>
+    <a href="#"
+       class="text-white text-xl font-bold no-underline 
+              mx-2 whitespace-nowrap 
+              hover:text-cyan-300 transition-colors duration-200 
+              drop-shadow-[1px_1px_0_black]">
+      Leaderboards
+    </a>
+    <a href="about.html" target="_blank"
+       class="text-white text-xl font-bold no-underline 
+              mx-2 whitespace-nowrap 
+              hover:text-cyan-300 transition-colors duration-200 
+              drop-shadow-[1px_1px_0_black]">
+      About
+    </a>
   </div>
 
-  <!-- Div for player leaderboard -->
-  <div id="playerRecordsContainer" class="flex justify-center p-6"></div>
+  <!-- Leaderboard Container -->
+  <div class="flex items-center justify-center min-h-screen pt-1 bg-gray-900">
+    <div class="backdrop-blur-md bg-cyan-300/15 border border-cyan-300 
+                shadow-[0_8px_24px_rgba(0,255,255,0.4)] rounded-2xl 
+                p-8 max-w-screen-2xl w-full text-center text-white bg-gray-900">
+      <h2 class="mt-8 text-3xl font-bold mb-4 drop-shadow-[1px_1px_0_black]">Sky High Leaderboards</h2>
+      <p class="text-sm mb-6 drop-shadow-[1px_1px_0_black]">
+        Check out the latest scores and ranks of the Sky High Game!
+      </p>
+      <div id="playerRecordsContainer" class="overflow-x-auto text-white"></div>
+    </div>
+  </div>
+</body>
+
+<!-- Div for player leaderboard -->
+<div id="playerRecordsContainer" class="flex justify-center p-6 bg-gray-900"></div>
+
+  
 
 
   <!-- Firebase SDK -->
@@ -100,8 +131,8 @@ function displayAllPlayerRecords() {
         thead.className = 'bg-gray-200';
         const headerRow = document.createElement('tr');
         const headers = [
-            'No. ', 'Name', 'Score', 'HTML', 'CSS', 'Python', 'DS', 
-            'Average Clear Time', 'Average Mistakes', 'Rank', 'Badges'
+            'No. ', 'Name', 'Rank', 'Score', 'HTML', 'CSS', 'Python', 'DS', 
+            'Average Clear Time', 'Average Mistakes', 'Badges'
         ];
 
         headers.forEach(headerText => {
@@ -118,13 +149,14 @@ function displayAllPlayerRecords() {
 
           players.forEach((player, index) => {
             const row = document.createElement('tr');
-            row.className = 'hover:bg-gray-100';
+            row.className = 'hover:bg-white';
 
             const rankHtml = convertRankToHTML(player.rank);
 
             const rowData = [
-              `No. ${index + 1}`,
+              `${index + 1}`,
               player.name,
+              rankHtml,
               player.score,
               `${player.htmlScore}%`,
               `${player.cssScore}%`,
@@ -132,7 +164,6 @@ function displayAllPlayerRecords() {
               `${player.dsScore}%`,
               `${Math.floor(player.clearTime / 60)}m ${player.clearTime % 60}s`, // Convert seconds to minutes
               player.mistakes,
-              rankHtml,
               `
                 <div class="flex justify-center space-x-2">
                   ${player.htmlScore >= 100 ? '<span class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded">HTML</span>' : ''}
@@ -145,7 +176,7 @@ function displayAllPlayerRecords() {
 
             rowData.forEach(data => {
               const td = document.createElement('td');
-              td.className = 'py-4 px-6 text-sm text-gray-700 text-center border-b';
+              td.className = 'py-4 px-6 text-sm text-white-700 text-center border-b bg-gray-700 ';
               td.innerHTML = data;
               row.appendChild(td);
             });

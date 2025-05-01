@@ -11,13 +11,41 @@
     <link rel="apple-touch-icon" href="icon/icon.png">
     <link rel="stylesheet" type="text/css" href="fonts/gamefont.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 </head>
-<body>
+<body class="bg-gray-900 font-['Press_Start_2P']">
+  <!-- Neon Glass Nav Bar -->
+  <div class="absolute top-[14%] left-1/2 transform -translate-x-1/2 z-50 
+              flex flex-wrap justify-center items-center gap-4 
+              px-8 py-4 max-w-[95vw] 
+              border border-cyan-300 rounded-2xl 
+              backdrop-blur-md bg-cyan-300/15 
+              shadow-[0_8px_24px_rgba(0,255,255,0.4)]">
+    <a href="#"
+       class="text-white text-xl font-bold no-underline 
+              mx-2 whitespace-nowrap 
+              hover:text-cyan-300 transition-colors duration-200 
+              drop-shadow-[1px_1px_0_black]">
+      Home
+    </a>
+    <a href="leaderboards.html" target="_blank"
+       class="text-white text-xl font-bold no-underline 
+              mx-2 whitespace-nowrap 
+              hover:text-cyan-300 transition-colors duration-200 
+              drop-shadow-[1px_1px_0_black]">
+      Leaderboards
+    </a>
+    <a href="about.html" target="_blank"
+       class="text-white text-xl font-bold no-underline 
+              mx-2 whitespace-nowrap 
+              hover:text-cyan-300 transition-colors duration-200 
+              drop-shadow-[1px_1px_0_black]">
+      About
+    </a>
+  </div>
 
-    <nav>
-        <a target="_blank" href="leaderboards.html">Leaderboards</a>
-    </nav>
 
     <!-- Game Scripts -->
     <script src="js/libs/pixi.js"></script>
