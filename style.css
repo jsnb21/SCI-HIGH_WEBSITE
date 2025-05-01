@@ -29,7 +29,7 @@ canvas {
 /* Nav Bar Styling */
 nav {
     position: absolute;
-    top: 20px;
+    top: 40px; /* increased from 20px */
     left: 50%;
     transform: translateX(-50%);
     z-index: 1001;
@@ -38,7 +38,7 @@ nav {
     padding: 12px 24px;
     border-radius: 20px;
     border: 1px solid rgba(0, 255, 255, 0.4);
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+    box-shadow: 0 8px 16px rgba(0, 255, 255, 0.3); /* subtle drop shadow */
 }
 
 nav a {
